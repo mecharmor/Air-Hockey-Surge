@@ -32,17 +32,17 @@ BasicGame.Game.prototype = {
 		
 		//draw centerline top to bottom
 		graphics.moveTo(this.world.centerX,100);
-		graphics.lineTo(this.world.centerX, this.world.centerY-50); 
-		graphics.moveTo(this.world.centerX, this.world.centerY+50);
+		graphics.lineTo(this.world.centerX, this.world.centerY-this.world.width/6); 
+		graphics.moveTo(this.world.centerX, this.world.centerY+this.world.width/6);
 		graphics.lineTo(this.world.centerX, this.world.height-100);
 		
 		//centerlines left to right
 		graphics.moveTo(0, this.world.centerY);
-		graphics.lineTo(this.world.width/2 -50, this.world.centerY); 
-		graphics.moveTo(this.world.width/2 +50, this.world.centerY);
+		graphics.lineTo(this.world.width/2 -this.world.width/6, this.world.centerY); 
+		graphics.moveTo(this.world.width/2 +this.world.width/6, this.world.centerY);
 		graphics.lineTo(this.world.width, this.world.centerY);
 		
-		graphics.drawCircle(this.world.centerX, this.world.centerY, 100);
+		graphics.drawCircle(this.world.centerX, this.world.centerY, this.world.width/3);
 		graphics.drawCircle(this.world.centerX, 0, 200);
 		graphics.drawCircle(this.world.centerX, this.world.height, 200);
 		

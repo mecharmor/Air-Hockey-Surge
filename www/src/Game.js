@@ -124,11 +124,11 @@ BasicGame.Game.prototype = {
 		
 		// paddles.setAll functin can set properties too.
 		this.paddles.forEach(function(paddle){
-			paddle.scale.x=	Math.max(1, window.innerWidth/1024);
+			paddle.scale.x=	Math.max(0.4, window.innerWidth/24000);
 			paddle.scale.y=	paddle.scale.x;
 			paddle.anchor.setTo(0.5, 0.5);            
 			paddle.body.collideWorldBounds = true;
-			paddle.body.setCircle(25*paddle.scale.x);
+			paddle.body.setCircle(150*paddle.scale.x);
 			//init movement
 			paddle.body.velocity.x = 5;
 			paddle.body.velocity.y = 5;

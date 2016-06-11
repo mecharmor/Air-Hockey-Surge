@@ -31,14 +31,9 @@ BasicGame.Preloader.prototype = {
         this.load.image('goalBottom', 'asset/blueGoal.png');
         this.load.image('goalTop', 'asset/redGoal.png');
         this.load.image('airhole', 'asset/hole4.png');
-        //this.load.image('players', 'asset/players.png');
-        //this.load.image('button1', 'asset/button1.png');
-        //this.load.image('button2', 'asset/button2.png');
-        //this.load.image('button3', 'asset/button3.png');
         this.load.image('playBtn', 'asset/play.png');
-        //this.load.image('musicOn', 'asset/musicOn1.png');
         this.load.image('mainMenu', 'asset/buttons.png');
-        // spritesheets are loading in with viewing rectangles and number of views
+        // spritesheets are loading in with frame rectangles and number of frames
         this.load.spritesheet('numPlayers', 'asset/numPlayers3.png',50,50,4);
         this.load.spritesheet('musicToggle', 'asset/music.png',50,50,2);
 

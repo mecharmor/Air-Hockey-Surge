@@ -3,9 +3,6 @@ BasicGame.Preloader = function (game) {
 
 	this.background = null;
 	this.preloadBar = null;
-    
-
-	//this.ready = false;
 
 };
 
@@ -14,11 +11,12 @@ BasicGame.Preloader.prototype = {
 	preload: function () {
 
 		//	These are the assets we loaded in Boot.js
-		//	A nice sparkly background and a loading progress bar
-        var tmpImg1 = this.cache.getImage('preloaderBackground');
-        this.add.sprite(this.world.centerX-tmpImg1.width/2.0, 20, 'preloaderBackground');
-		
-		this.preloadBar = this.add.sprite(50, 170, 'preloaderBar');
+        var splash = this.cache.getImage('preloaderBackground');
+        var bar = this.cache.getImage('preloaderBar');
+        // placing splash background as a sprite in the middle of the page 50 px from top
+        this.splashGraphic = this.add.sprite(this.world.centerX-splash.width/2.0, 50, 'preloaderBackground');
+		//adding the preloader bar as sprite in the middle 200 px from top
+		this.preloadBar = this.add.sprite(this.world.centerX-bar.width/2.0, 200, 'preloaderBar');
 
 		//	This sets the preloadBar sprite as a loader sprite.
 		//	What that does is automatically crop the sprite from 0 to full-width
@@ -33,47 +31,42 @@ BasicGame.Preloader.prototype = {
         this.load.image('goalBottom', 'asset/blueGoal.png');
         this.load.image('goalTop', 'asset/redGoal.png');
         this.load.image('airhole', 'asset/hole4.png');
-        this.load.image('players', 'asset/players.png');
-        this.load.image('button1', 'asset/button1.png');
-        this.load.image('button2', 'asset/button2.png');
-        this.load.image('button3', 'asset/button3.png');
-        this.load.image('button4', 'asset/play.png');
+        //this.load.image('players', 'asset/players.png');
+        //this.load.image('button1', 'asset/button1.png');
+        //this.load.image('button2', 'asset/button2.png');
+        //this.load.image('button3', 'asset/button3.png');
+        this.load.image('playBtn', 'asset/play.png');
+        //this.load.image('musicOn', 'asset/musicOn1.png');
+        this.load.image('mainMenu', 'asset/buttons.png');
+        // spritesheets are loading in with viewing rectangles and number of views
         this.load.spritesheet('numPlayers', 'asset/numPlayers3.png',50,50,4);
         this.load.spritesheet('musicToggle', 'asset/music.png',50,50,2);
-        this.load.image('musicOn', 'asset/musicOn1.png');
-        this.load.image('mainMenu', 'asset/buttons.png');
-        
-        
-		//this.load.image('titlepage', 'images/title.jpg');
-		//this.load.atlas('playButton', 'images/play_button.png', 'images/play_button.json');
+
+        // loading in audio assets here... keep as wav to save loading times if poss.
 		this.load.audio('puckHitSnd', ['asset/button-16.wav']);
         this.load.audio('whooshSnd', ['asset/whip-whoosh-03.wav']);
-        this.load.audio('backBeat', ['asset/Burner.mp3']);
-		//this.load.bitmapFont('caslon', 'fonts/caslon.png', 'fonts/caslon.xml');
-		//	+ lots of other required assets here
+        this.load.audio('gameMusic', ['asset/Burner.mp3']);
 
 	},
 
 	create: function () {
-
-		//	Once the load has finished we disable the crop because we're going to sit in the update loop for a short while as the music decodes
-		//this.preloadBar.cropEnabled = false;
+        //empty but might make game board lines here later
 
 	},
 
 	update: function () {
         
-        //Todo: pause a bit
-
-        this.state.start('MainMenu');
-
-		/*
-		if (this.cache.isSoundDecoded('titleMusic') && this.ready == false)
+        //  This slows down the startup alot because mp3 has to decode (we should use wav files)
+		if (this.cache.isSoundDecoded('gameMusic'))
 		{
-			this.ready = true;
-			//this.state.start('MainMenu');
+            //set global background music here
+            BasicGame.backgroundMusic = this.add.audio('gameMusic');
+            BasicGame.backgroundMusic.volume = 0.3;
+            BasicGame.backgroundMusic.loop = true;
+            BasicGame.backgroundMusic.play();
+            //BasicGame.backgroundMusic.stop();
+            this.game.state.start('MainMenu');
 		}
-        */
 
 	}
 

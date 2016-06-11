@@ -1,9 +1,6 @@
 
 BasicGame.MainMenu = function (game) {
 
-	//this.music = null;
-	//this.playButton = null;
-
 };
 
 BasicGame.MainMenu.prototype = {
@@ -12,22 +9,20 @@ BasicGame.MainMenu.prototype = {
                
        //background to look like air hockey table
         this.add.tileSprite(0, 0, this.world.width, this.world.height, 'airhole');
-        var tmpImg1 = this.cache.getImage('preloaderBackground');
-        var tmpImg2 = this.cache.getImage('players');
-        this.add.sprite(this.world.centerX-tmpImg1.width/2.0, 20, 'preloaderBackground');
-        
+        var splash = this.cache.getImage('preloaderBackground');
+        this.add.sprite(this.world.centerX-splash.width/2.0, 50, 'preloaderBackground');
         
 		//	We've already preloaded our assets, so let's kick right into the Main Menu itself.
 		//	Here all we're doing is playing some music and adding a picture and button
-		//	Naturally I expect you to do something significantly better :)
+		//	We can make this look better
 
 		//this.music = this.add.audio('titleMusic');
 		//this.music.play();
 
-		//this.add.sprite(0, 0, 'titlepage');
-        this.pb = this.add.button(this.world.centerX-85, 150, 'numPlayers',this.changePlayer, this);
-        this.mb = this.add.button(this.world.centerX-25, 150, 'musicToggle',this.changeMusic, this);
-        this.playbtn = this.add.button(this.world.centerX+35, 150, 'button4', this.startGame, this);
+		//These are phaser buttons when clicked methods called
+        this.pb = this.add.button(this.world.centerX-85, 200, 'numPlayers',this.changePlayer, this);
+        this.mb = this.add.button(this.world.centerX-25, 200, 'musicToggle',this.changeMusic, this);
+        this.playbtn = this.add.button(this.world.centerX+35, 200, 'playBtn', this.startGame, this);
         
       
 	},
@@ -46,9 +41,11 @@ BasicGame.MainMenu.prototype = {
     },
     changeMusic: function(){
             if(this.game.music){
+                BasicGame.backgroundMusic.stop();
                 this.game.music = false;
                 this.mb.frame=1;
             }else{
+                BasicGame.backgroundMusic.play();
                 this.game.music = true;
                 this.mb.frame=0;
             }

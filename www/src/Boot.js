@@ -3,13 +3,10 @@
 BasicGame = {
 
     /* Here we've just got some global level vars that persist regardless of State swaps */
+    /* access globals using syntax: BasicGame.score anywhere in app  */
     score: 0,
-
-    /* If the music in your game needs to play through-out a few State swaps, then you could reference it here */
-   // music: true,
-
-    /* Your game can check BasicGame.orientated in internal loops to know if it should pause or not */
-    //orientated: false,
+    backgroundMusic: null, //bacground music will be global set in next state
+    music: true //start with music on
     
 };
 
@@ -27,7 +24,6 @@ BasicGame.Boot.prototype = {
         this.input.addPointer();  // 4th pointer
         this.input.addPointer();  // 5th pointer
 
-        //this.input.maxPointers = 1;
         this.stage.disableVisibilityChange = true;
         this.stage.backgroundColor = '#fff';
 
@@ -52,6 +48,7 @@ BasicGame.Boot.prototype = {
     preload: function () {
 
         //  Here we load the assets required for our preloader (in this case a background and a loading bar)
+        // We will preload all game assets in the next game state.
         this.load.image('preloaderBackground', 'asset/airHockeySplash.png');
         this.load.image('preloaderBar', 'asset/preloader-bar.png');
 
@@ -68,6 +65,7 @@ BasicGame.Boot.prototype = {
         //  This could be handy if you need to do any extra processing if the game resizes.
         //  A resize could happen if for example swapping orientation on a device or resizing the browser window.
         //  Note that this callback is only really useful if you use a ScaleMode of RESIZE and place it inside your main game state.
+        // I have no idea how to do this yet!!  So just don't resize this game.  easy.
 
     },
 

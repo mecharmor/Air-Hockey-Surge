@@ -11,13 +11,6 @@ BasicGame.Game.prototype = {
 	
 	init: function () {
 		
-		if(this.game.music){
-			this.backgroundMusic = this.add.audio('backBeat');
-			this.backgroundMusic.volume = 0.3;
-			this.backgroundMusic.loop = true;
-			this.backgroundMusic.play();
-		}
-		
 		// TODO: Add logo to the center of the stage
 		//background to look like air hockey table
 		this.add.tileSprite(0, 0, this.world.width, this.world.height, 'airhole');
@@ -164,6 +157,11 @@ BasicGame.Game.prototype = {
 		this.scoreRtxt = this.add.text(this.world.width-20, this.world.centerY+25, '0', this.styleScore);
 		this.scoreRtxt.anchor.setTo(0.5, 0.5);
 		this.scoreRtxt.angle = 90;
+        
+        //main menu button top right corner FOR NOW.
+        this.mmBtn = this.add.button(this.world.width-60, 20, 'mainMenu', this.newGame, this);
+        this.mmBtn.scale.setTo(0.75,0.75);
+        this.mmBtn.alpha = 0.5;
 		
 	},
 	update: function(){
@@ -220,8 +218,6 @@ BasicGame.Game.prototype = {
 		this.puck.revive();
 	},
 	newGame: function(){
-		if(this.game.music)
-			this.backgroundMusic.stop();
 		this.state.start('MainMenu');
 	},
 	

@@ -5,6 +5,20 @@ BasicGame.MainMenu = function (game) {
 
 BasicGame.MainMenu.prototype = {
 
+    
+    init: function() {
+        var graphics = this.add.graphics(0, 0);
+		graphics.beginFill(0xc0c0c0,0);
+		graphics.lineStyle(4, 0xD62D20, 0.5);
+        
+        //draw centerline top to bottom
+		graphics.moveTo(this.world.centerX,0);
+        graphics.lineTo(this.world.centerX, this.world.height); 
+		//graphics.moveTo(this.world.centerX, this.world.centerY+this.world.width/6);
+		//graphics.lineTo(this.world.centerX, this.world.height-100);
+    },
+    
+    
 	create: function () {
                
        //background to look like air hockey table

@@ -137,9 +137,12 @@ BasicGame.Game.prototype = {
 		this.scoreRtxt.angle = 90;
         
         //main menu button top right corner FOR NOW.
-        this.mmBtn = this.add.button(this.world.width-60, 20, 'mainMenu', this.newGame, this);
+        this.mmBtn = this.add.button(this.world.width-60, 20, 'mainMenu', this.pauseGame, this);
         this.mmBtn.scale.setTo(0.75,0.75);
         this.mmBtn.alpha = 0.5;
+        
+        this.pauseMenu = this.game.add.group();
+        this.pauseMenu.visible = false;
 		
 	},
 	update: function(){
@@ -195,10 +198,15 @@ BasicGame.Game.prototype = {
 		this.puck.body.velocity.x = 75
 		this.puck.revive();
 	},
-	newGame: function(){
-		this.state.start('MainMenu');
+	pauseGame: function(){
+        this.game.paused = true;
+        this.input.onDown.add(this.unpauseGame, this);
+		//this.state.start('MainMenu');
 	},
-	
+	unpauseGame: function(){
+        this.game.paused = false;
+		//this.state.start('MainMenu');
+	},
 	
 	// utility functions for the paddles *****************
 	paddleGrab: function (pointer) {

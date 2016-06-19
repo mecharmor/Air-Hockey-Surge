@@ -67,6 +67,22 @@ BasicGame.Game.prototype = {
 			}
 		}
 		this.physics.p2.enable(this.paddles,false); //change to true to see hitcircle
+        
+		// paddles.setAll functin can set properties too.
+		this.paddles.forEach(function(paddle){
+            //console.log(this.world.width)
+            paddle.width = this.world.width/6;
+            paddle.height = this.world.width/6;
+			//paddle.scale.x=	Math.max(0.4, window.innerWidth/24000);
+			//paddle.scale.y=	paddle.scale.x;
+			paddle.anchor.setTo(0.5, 0.5);            
+			paddle.body.collideWorldBounds = true;
+			paddle.body.setCircle(paddle.width/3); //less than one-half to account for outer glow
+			//init movement
+			paddle.body.velocity.x = 5;
+			paddle.body.velocity.y = 5;
+			
+		},this);
 		
 		//Physics for one player
 		if(this.game.numPlayers == 1){
@@ -88,18 +104,7 @@ BasicGame.Game.prototype = {
 			this.computerHandle.body.static = true;
 		}
 		
-		// paddles.setAll functin can set properties too.
-		this.paddles.forEach(function(paddle){
-			paddle.scale.x=	Math.max(0.4, window.innerWidth/24000);
-			paddle.scale.y=	paddle.scale.x;
-			paddle.anchor.setTo(0.5, 0.5);            
-			paddle.body.collideWorldBounds = true;
-			paddle.body.setCircle(150*paddle.scale.x);
-			//init movement
-			paddle.body.velocity.x = 5;
-			paddle.body.velocity.y = 5;
-			
-		});
+
 		
 		this.goalTop.bringToTop();
 		this.goalBottom.bringToTop();

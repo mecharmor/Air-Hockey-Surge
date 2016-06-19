@@ -136,13 +136,25 @@ BasicGame.Game.prototype = {
 		this.scoreRtxt.anchor.setTo(0.5, 0.5);
 		this.scoreRtxt.angle = 90;
         
-        //main menu button top right corner FOR NOW.
-        this.mmBtn = this.add.button(this.world.width-60, 20, 'mainMenu', this.pauseGame, this);
+        //main menu button in middle for now
+        this.mmBtn = this.add.button(this.world.width-60, this.world.centerY-20, 'mainMenu', this.pauseGame, this);
         this.mmBtn.scale.setTo(0.75,0.75);
-        this.mmBtn.alpha = 0.5;
+        this.mmBtn.alpha = 0.85;
         
+        // game menu work here
         this.pauseMenu = this.game.add.group();
         this.pauseMenu.visible = false;
+        
+        this.mnuBackground = this.pauseMenu.create(0,0,'gameMenuBackground');
+        this.mnuBackground.width = this.world.width;
+        this.mnuBackground.height = this.world.height;
+        this.mnuBackground.alpha = 0.65;
+        
+        var tempBtn = this.cache.getImage('gameContinueBtn');
+        var scaleFactor = (this.world.width/2) / tempBtn.width ;  //new size div old size
+        this.continueGame = this.pauseMenu.create(19,10,'gameContinueBtn');
+        this.continueGame.scale.setTo(scaleFactor,scaleFactor);
+
 		
 	},
 	update: function(){
@@ -200,11 +212,18 @@ BasicGame.Game.prototype = {
 	},
 	pauseGame: function(){
         this.game.paused = true;
+        this.pauseMenu.visible = true;
         this.input.onDown.add(this.unpauseGame, this);
 		//this.state.start('MainMenu');
 	},
 	unpauseGame: function(){
-        this.game.paused = false;
+        if (this.game.paused) {
+            if (this.continueGame.getBounds().contains(this.game.input.x, this.game.input.y)) {
+                this.game.paused = false;        
+                this.pauseMenu.visible = false;
+            }
+        }
+        //this.game.paused = false;
 		//this.state.start('MainMenu');
 	},
 	

@@ -33,6 +33,9 @@ BasicGame.Preloader.prototype = {
         this.load.image('airhole', 'asset/hole4.png');
         this.load.image('playBtn', 'asset/play.png');
         this.load.image('mainMenu', 'asset/buttons.png');
+        
+        this.load.image('gameContinueBtn', 'asset/gameMenu-continue.png');
+        this.load.image('gameMenuBackground', 'asset/gameMenu-background.png');
         // spritesheets are loading in with frame rectangles and number of frames
         this.load.spritesheet('numPlayers', 'asset/numPlayers3.png',50,50,4);
         this.load.spritesheet('musicToggle', 'asset/music.png',50,50,2);

@@ -4,6 +4,9 @@
 //pass 'this' to the level design functions so you can paint to the screen.
 function GenericLevel(me){
     
+    var Watermark = me.cache.getImage('Watermark');
+    me.add.sprite(me.world.centerX-Watermark.width/2.0, me.world.centerX, 'Watermark');
+    
     //background to look like air hockey table
     me.add.tileSprite(0, 0, me.world.width, me.world.height, 'airhole');
     

@@ -36,6 +36,7 @@ BasicGame.Preloader.prototype = {
         
         this.load.image('gameContinueBtn', 'asset/gameMenu-continue.png');
         this.load.image('gameMenuBackground', 'asset/gameMenu-background.png');
+        this.load.image('gameMenuQuitBtn', 'asset/gameMenu-quit.png');
         // spritesheets are loading in with frame rectangles and number of frames
         this.load.spritesheet('numPlayers', 'asset/numPlayers3.png',50,50,4);
         this.load.spritesheet('musicToggle', 'asset/music.png',50,50,2);

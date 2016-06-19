@@ -141,7 +141,7 @@ BasicGame.Game.prototype = {
         this.mmBtn.scale.setTo(0.75,0.75);
         this.mmBtn.alpha = 0.85;
         
-        // game menu work here
+        // game menu work here ****************************************
         this.pauseMenu = this.game.add.group();
         this.pauseMenu.visible = false;
         
@@ -154,8 +154,14 @@ BasicGame.Game.prototype = {
         var scaleFactor = (this.world.width/2) / tempBtn.width ;  //new size div old size
         this.continueGame = this.pauseMenu.create(19,10,'gameContinueBtn');
         this.continueGame.scale.setTo(scaleFactor,scaleFactor);
-
-		
+        this.continueGame.x = this.world.centerX-this.continueGame.width/2;
+        this.continueGame.y = this.world.centerY-this.continueGame.height-10;
+        
+        this.quitGame = this.pauseMenu.create(19,10,'gameMenuQuitBtn');
+        this.quitGame.scale.setTo(scaleFactor,scaleFactor);
+        this.quitGame.x = this.world.centerX-this.quitGame.width/2;
+        this.quitGame.y = this.world.centerY+10;
+        //******************************************************************
 	},
 	update: function(){
 		// 1 player activate ai
@@ -223,8 +229,13 @@ BasicGame.Game.prototype = {
                 this.pauseMenu.visible = false;
             }
         }
-        //this.game.paused = false;
-		//this.state.start('MainMenu');
+        if (this.game.paused) {
+            if (this.quitGame.getBounds().contains(this.game.input.x, this.game.input.y)) {
+                this.game.paused = false;        
+                this.state.start('MainMenu');
+            }
+        }
+ 
 	},
 	
 	// utility functions for the paddles *****************

@@ -11,51 +11,23 @@ BasicGame.Game.prototype = {
 	
 	init: function () {
 		
-		// TODO: Add logo to the center of the stage
-		//background to look like air hockey table
-		this.add.tileSprite(0, 0, this.world.width, this.world.height, 'airhole');
+        GenericLevel(this);
+
 		// using p2 physics with no gravity
 		this.physics.startSystem(Phaser.Physics.P2JS);
 		this.physics.p2.restitution = 0.85; //this gives bounce
-		
-		//draw the board
-		var graphics = this.add.graphics(0, 0);
-		graphics.beginFill(0xc0c0c0,0);
-		graphics.lineStyle(4, 0xD62D20, 0.5);
-		
-		//draw centerline top to bottom
-		graphics.moveTo(this.world.centerX,100);
-		graphics.lineTo(this.world.centerX, this.world.centerY-this.world.width/6); 
-		graphics.moveTo(this.world.centerX, this.world.centerY+this.world.width/6);
-		graphics.lineTo(this.world.centerX, this.world.height-100);
-		
-		//centerlines left to right
-		graphics.moveTo(0, this.world.centerY);
-		graphics.lineTo(this.world.width/2 -this.world.width/6, this.world.centerY); 
-		graphics.moveTo(this.world.width/2 +this.world.width/6, this.world.centerY);
-		graphics.lineTo(this.world.width, this.world.centerY);
-		
-		graphics.drawCircle(this.world.centerX, this.world.centerY, this.world.width/3);
-		graphics.drawCircle(this.world.centerX, 0, 200);
-		graphics.drawCircle(this.world.centerX, this.world.height, 200);
-		
-		//draw score boxes
-		graphics.lineStyle(0);
-		graphics.beginFill(0x000);
-		graphics.drawRect(this.world.width-30,this.world.centerY-40,30,30);
-		graphics.drawRect(this.world.width-30,this.world.centerY+10,30,30);
 				
 		//set up goals
 		this.goalTop = this.add.sprite(this.world.centerX, 6,'goalTop');
 		this.goalBottom = this.add.sprite(this.world.centerX, this.world.height-12,'goalBottom');
 		
 		this.physics.p2.enable([this.goalTop,this.goalBottom], false); //change to true to see
-		
-		//set goal hit rectangles
-		this.goalTop.body.static = true;
-		this.goalTop.body.setRectangle(100,15,-4);
-		this.goalBottom.body.static = true;
-		this.goalBottom.body.setRectangle(100,15,6);
+        //set goal hit rectangles
+        this.goalTop.body.static = true;
+        this.goalTop.body.setRectangle(100,15,-4);
+        this.goalBottom.body.static = true;
+        this.goalBottom.body.setRectangle(100,15,6);
+
 		
 	},
 

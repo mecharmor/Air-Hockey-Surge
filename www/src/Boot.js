@@ -49,7 +49,11 @@ BasicGame.Boot.prototype = {
 
         //  Here we load the assets required for our preloader (in this case a background and a loading bar)
         // We will preload all game assets in the next game state.
-        this.load.image('preloaderBackground', 'asset/airHockeySplash.png');
+        //this.load.image('preloaderBackground', 'asset/airHockeySplash.png');
+       
+        //New Splish Splash
+        this.load.image('preloaderBackground', 'asset/air_hockey_photoshop/Normal/Airhockey_Splash.png');
+
         this.load.image('Watermark', 'asset/Watermark_001.png')
         this.load.image('preloaderBar', 'asset/preloader-bar.png');
 

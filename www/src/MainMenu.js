@@ -7,7 +7,13 @@ BasicGame.MainMenu.prototype = {
 
     
     init: function() {
+        
+        this.world.setBounds(0,0,window.innerWidth, window.innerHeight);
+        this.world.alpha = 1;
+        
+        //draw board
         GenericLevel(this);
+
         var splash = this.cache.getImage('preloaderBackground');
         this.add.sprite(this.world.centerX-splash.width/2.0, 50, 'preloaderBackground');
         
@@ -15,6 +21,14 @@ BasicGame.MainMenu.prototype = {
         this.pb = this.add.button(this.world.centerX-85, 200, 'numPlayers',this.changePlayer, this);
         this.mb = this.add.button(this.world.centerX-25, 200, 'musicToggle',this.changeMusic, this);
         this.playbtn = this.add.button(this.world.centerX+35, 200, 'playBtn', this.startGame, this);
+        
+        var abt = this.cache.getImage('aboutBtn');
+        var scaleFactor = (this.world.width/3)/abt.width;  // new width div old width
+        this.aboutbtn = this.add.button(10, 10, 'aboutBtn', this.aboutGame, this);
+        this.aboutbtn.scale.setTo(scaleFactor,scaleFactor);
+        this.aboutbtn.x = this.world.centerX-this.aboutbtn.width/2;
+        this.aboutbtn.y = 300;
+    
     },
     
     
@@ -52,6 +66,12 @@ BasicGame.MainMenu.prototype = {
 
 		//	Ok, the Play Button has been clicked or touched, so let's stop the music (otherwise it'll carry on playing)
 		//this.music.stop();
+
+	},
+    
+    aboutGame: function (btn) {
+        
+        this.game.state.start('About');
 
 	}
 

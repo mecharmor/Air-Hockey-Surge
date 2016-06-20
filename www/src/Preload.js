@@ -33,6 +33,8 @@ BasicGame.Preloader.prototype = {
         this.load.image('airhole', 'asset/hole4.png');
         this.load.image('playBtn', 'asset/play.png');
         this.load.image('mainMenu', 'asset/buttons.png');
+        this.load.image('aboutBtn', 'asset/gameMenu-about.png');
+        this.load.image('mainMenuBtn', 'asset/gameMenu-main.png');
         
         this.load.image('gameContinueBtn', 'asset/gameMenu-continue.png');
         this.load.image('gameMenuBackground', 'asset/gameMenu-background.png');

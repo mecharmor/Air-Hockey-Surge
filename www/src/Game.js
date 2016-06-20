@@ -24,9 +24,11 @@ BasicGame.Game.prototype = {
 		this.physics.p2.enable([this.goalTop,this.goalBottom], false); //change to true to see
         //set goal hit rectangles
         this.goalTop.body.static = true;
-        this.goalTop.body.setRectangle(100,15,-4);
+        this.goalTop.width = this.world.width/3+30;
+        this.goalTop.body.setRectangle(this.world.width/3-4,15,7);
         this.goalBottom.body.static = true;
-        this.goalBottom.body.setRectangle(100,15,6);
+        this.goalBottom.body.setRectangle(this.world.width/3-8,15,6,6);
+        this.goalBottom.width = this.world.width/3+30;
 
 		
 	},

@@ -139,6 +139,7 @@ BasicGame.Game.prototype = {
 		this.scoreRtxt.angle = 90;
         
         //main menu button in middle for now
+        //TODO: make a nice control group/panel for the side
         this.mmBtn = this.add.button(this.world.width-60, this.world.centerY-20, 'mainMenu', this.pauseGame, this);
         this.mmBtn.scale.setTo(0.75,0.75);
         this.mmBtn.alpha = 0.85;
@@ -150,7 +151,12 @@ BasicGame.Game.prototype = {
         this.mnuBackground = this.pauseMenu.create(0,0,'gameMenuBackground');
         this.mnuBackground.width = this.world.width;
         this.mnuBackground.height = this.world.height;
-        this.mnuBackground.alpha = 0.65;
+        this.mnuBackground.alpha = 0.75;
+        
+        var messageStr = "First side to 7 wins.";
+        var messageStyle = { font: "bold 20px Arial ", fill: "#fff", align: "center" };
+        this.mnutxt = this.game.add.text(this.world.centerX, 50, messageStr, messageStyle, this.pauseMenu);
+		this.mnutxt.anchor.setTo(.5, .5);
         
         var tempBtn = this.cache.getImage('gameContinueBtn');
         var scaleFactor = (this.world.width/2) / tempBtn.width ;  //new size div old size
@@ -163,6 +169,26 @@ BasicGame.Game.prototype = {
         this.quitGame.scale.setTo(scaleFactor,scaleFactor);
         this.quitGame.x = this.world.centerX-this.quitGame.width/2;
         this.quitGame.y = this.world.centerY+10;
+        //******************************************************************
+        
+        // End game menu work here ****************************************
+        this.endGameMenu = this.game.add.group();
+        this.endGameMenu.visible = false; //toggle visible
+        
+        this.endGameBackground = this.endGameMenu.create(0,0,'gameMenuBackground');
+        this.endGameBackground.width = this.world.width;
+        this.endGameBackground.height = this.world.height;
+        this.endGameBackground.alpha = 0.65;
+        
+        messageStr = "Game Over.";  //change when a winner is identified
+        messageStyle = { font: "bold 20px Arial ", fill: "#fff", align: "center" };
+        this.endtxt = this.game.add.text(this.world.centerX, 50, messageStr, messageStyle,this.endGameMenu);
+		this.endtxt.anchor.setTo(.5, .5);
+        
+        this.endGameBackMainBtn = this.make.button(75,75,'mainMenuBtn',this.mainMenuBack,this);
+        this.endGameBackMainBtn.scale.setTo(.5,.5);
+        this.endGameMenu.add(this.endGameBackMainBtn);
+        
         //******************************************************************
 	},
 	update: function(){
@@ -205,9 +231,8 @@ BasicGame.Game.prototype = {
 		}else{
 			this.time.events.remove(this.timer);
 			this.timerTxt.setText('Winner Winner');
-			
-			var tmpImg1 = this.cache.getImage('mainMenu');
-			this.add.button(this.world.centerX-tmpImg1.width/2.0, this.world.centerY-tmpImg1.height/2.0, 'mainMenu', this.newGame, this);
+            //end game group Visiable here
+            this.endGameMenu.visible = true; //toggle visible
 		}
 
 	},
@@ -239,6 +264,9 @@ BasicGame.Game.prototype = {
         }
  
 	},
+    mainMenuBack: function(){
+        this.state.start('MainMenu');
+    },
 	
 	// utility functions for the paddles *****************
 	paddleGrab: function (pointer) {

@@ -126,11 +126,20 @@ BasicGame.Game.prototype = {
 		this.timerTxt.visible = false;
 		//this.timerTxt.angle = 90;
 		
+        //score sideBar TODO: should make this a group ***********************************************
 		this.counter = 6;
 		this.scoreL = 0;
 		this.scoreR = 0;
 		this.styleScore = { font: "bold 20px Arial ", fill: "#fff", align: "center" };
 		
+        var sideBar = this.add.sprite(0, this.world.centerY, 'sideBar');
+        sideBar.anchor.setTo(.5, .5);
+        sideBar.angle = 90;
+        sideBar.width = this.world.height/5;
+        sideBar.height = this.world.width/10;
+        sideBar.x = this.world.width;
+        sideBar.y = this.world.centerY;        
+        
 		this.scoreLtxt = this.add.text(this.world.width-20, this.world.centerY-25, '0', this.styleScore);
 		this.scoreLtxt.anchor.setTo(.5, .5);
 		this.scoreLtxt.angle = 90;
@@ -138,11 +147,24 @@ BasicGame.Game.prototype = {
 		this.scoreRtxt.anchor.setTo(0.5, 0.5);
 		this.scoreRtxt.angle = 90;
         
-        //main menu button in middle for now
-        //TODO: make a nice control group/panel for the side
-        this.mmBtn = this.add.button(this.world.width-60, this.world.centerY-20, 'mainMenu', this.pauseGame, this);
-        this.mmBtn.scale.setTo(0.75,0.75);
-        this.mmBtn.alpha = 0.85;
+        var mmBtn = this.add.button(0, 0, 'mainMenu', this.pauseGame, this);
+        mmBtn.anchor.setTo(.5, .5);
+        mmBtn.width = sideBar.height/2;
+        mmBtn.height = mmBtn.width;
+        mmBtn.x = this.world.width - sideBar.height/4;
+        mmBtn.y = this.world.centerY;
+        mmBtn.alpha = 0.85;
+        
+        var sideBar2 = this.add.sprite(0, 0, 'sideBar');
+        sideBar2.anchor.setTo(.5, .5);
+        sideBar2.angle = -90;
+        sideBar2.width = this.world.height/5;
+        sideBar2.height = this.world.width/10;
+        sideBar2.x = 0;
+        sideBar2.y = this.world.centerY;  
+        //************************************************************
+        
+
         
         // game menu work here ****************************************
         this.pauseMenu = this.game.add.group();

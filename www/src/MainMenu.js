@@ -13,6 +13,13 @@ BasicGame.MainMenu.prototype = {
         
         //draw board
         GenericLevel(this);
+        
+        //lights out on board?
+        this.mnuBackground = this.add.sprite(0,0,'gameMenuBackground');
+        this.mnuBackground.width = this.world.width;
+        this.mnuBackground.height = this.world.height;
+        this.mnuBackground.alpha = 0.75;
+        // end lights out
 
         var splash = this.cache.getImage('preloaderBackground');
         this.add.sprite(this.world.centerX-splash.width/2.0, 50, 'preloaderBackground');

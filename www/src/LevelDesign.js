@@ -6,11 +6,11 @@ function GenericLevel(me){
     
     var Watermark = me.cache.getImage('Watermark');
     watermarkSprite = me.add.sprite(0, 0, 'Watermark');
-    watermarkSprite.width = me.world.width/2.1;
-    watermarkSprite.height = me.world.width/(2.1*2);  // to keep aspect ratio 2:1
+    watermarkSprite.width = me.world.width/3.2;
+    watermarkSprite.height = me.world.width/(3.2*2);  // to keep aspect ratio 2:1
     watermarkSprite.x = me.world.centerX-watermarkSprite.width/2;
     watermarkSprite.y = me.world.centerY-watermarkSprite.height/2;
-    watermarkSprite.alpha = 0.50;  //transparancy as a percentage
+    watermarkSprite.alpha = 0.40;  //transparancy as a percentage
     
     //background to look like air hockey table
     me.add.tileSprite(0, 0, me.world.width, me.world.height, 'airhole');

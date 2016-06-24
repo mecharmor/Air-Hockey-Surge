@@ -5,7 +5,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.webapp",
       "src": "webapp/template-blank/sample.zip",
       "projectGuid": "2e6f225f-6691-4bbc-9814-7feaea9b2c1b",
-      "lastModifiedDate": 1461976171218,
+      "lastModifiedDate": 1466791655020,
       "creationDate": 1461975999462
     },
     "XDK-app-designer": "false",
@@ -222,16 +222,17 @@
         "appName_": "AirHockeySurge",
         "appID_": "xdk.intel.blank.template.crosswalk",
         "appAccess_": {
-          "mode": "legacy",
+          "mode": "whitelist",
           "network": [],
           "intents": [],
-          "navigation": []
+          "navigation": [],
+          "properties": {}
         },
         "icons_": [],
         "splashes_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
-        "certificateId_": "",
+        "certificateId_": "45sKDzrHuUSzfhvs8dKZ4A2",
         "iosProvs_": [],
         "cordovaCLIVersion_": "5.4.1",
         "crosswalkVersion_": "16",

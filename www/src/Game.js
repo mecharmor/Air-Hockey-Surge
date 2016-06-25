@@ -5,7 +5,7 @@
 // create Game function in BasicGame
 BasicGame.Game = function (game) {
 };
-
+//I am not very good with computers plz help -Graham
 // set Game function prototype
 BasicGame.Game.prototype = {
 	

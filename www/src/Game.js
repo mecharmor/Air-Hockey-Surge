@@ -51,7 +51,7 @@ BasicGame.Game.prototype = {
 		this.puck.anchor.setTo(0.5, 0.5);
 		// turn false the collision circle in production
 		this.physics.p2.enable(this.puck, false); //change to true to see hitcircle
-		this.puck.body.setCircle(this.world.width/24);  //scale the puck hit box here.
+		this.puck.body.setCircle(puckSize*.8/2);  //scale the puck hit box here.
 		this.puck.body.collideWorldBounds = true;
 		this.puck.body.velocity.x = 20;
 		this.puck.body.velocity.y = 100;

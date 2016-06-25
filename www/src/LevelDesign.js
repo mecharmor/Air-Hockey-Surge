@@ -42,4 +42,9 @@ function GenericLevel(me){
 	graphics.beginFill(0x000);
 	graphics.drawRect(me.world.width-30,me.world.centerY-40,30,30);
 	graphics.drawRect(me.world.width-30,me.world.centerY+10,30,30);
+    
+    me.goalTopImage = me.add.sprite(me.world.width/3-10,-100,'goalTop');
+    me.goalTopImage.width = me.world.width/3+30;
+    me.goalBottomImage = me.add.sprite(me.world.width/3-10,me.world.height-40,'goalBottom');
+    me.goalBottomImage.width = me.world.width/3+30;
 };

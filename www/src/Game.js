@@ -18,16 +18,15 @@ BasicGame.Game.prototype = {
 		this.physics.p2.restitution = 0.85; //this gives bounce
 				
 		//set up goals
-		this.goalTop = this.add.sprite(this.world.centerX, 6,'goalTop');
-		this.goalBottom = this.add.sprite(this.world.centerX, this.world.height-12,'goalBottom');
+		this.goalTop = this.add.sprite(this.world.centerX-4, 6);
+		this.goalBottom = this.add.sprite(this.world.centerX-4, this.world.height-12);
 		
-		this.physics.p2.enable([this.goalTop,this.goalBottom], false); //change to true to see
+		this.physics.p2.enable([this.goalTop,this.goalBottom], true); //change to true to see
         //set goal hit rectangles
         this.goalTop.body.static = true;
-        this.goalTop.width = this.world.width/3+30;
-        this.goalTop.body.setRectangle(this.world.width/3-4,15,7);
+        this.goalTop.body.setRectangle(this.world.width/3-50,15,7);
         this.goalBottom.body.static = true;
-        this.goalBottom.body.setRectangle(this.world.width/3-8,15,6,6);
+        this.goalBottom.body.setRectangle(this.world.width/3-50,15,6,6);
         this.goalBottom.width = this.world.width/3+30;
 
 		

@@ -18,7 +18,7 @@ function GenericLevel(me){
     //draw the board
 	var graphics = me.add.graphics(0, 0);
     graphics.beginFill(0xc0c0c0,0);
-	graphics.lineStyle(4, 0xD62D20, 0.5);
+	graphics.lineStyle(4, 0xff7332, 0.5);
 		
     //draw centerline top to bottom
 	graphics.moveTo(me.world.centerX,100);

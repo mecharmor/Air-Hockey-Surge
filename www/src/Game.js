@@ -34,12 +34,20 @@ BasicGame.Game.prototype = {
 	},
 
 	create: function () {
-		
+        // var starts here
+		var paddleSize = this.world.width/6;
+        if( paddleSize < 100 ){
+                paddleSize = 100;
+            }
+        var puckSize = paddleSize *.66;
+        
+        // var ends here
+        
 		// Add puck to the center of the stage
 		this.puck = this.add.sprite(10, this.world.centerY,'puck');
 		// scale the puck here
-        this.puck.width=this.world.width/9;
-        this.puck.height =this.world.width/9; //this is 1/3 of the goal which is 1/3 of the width.
+        this.puck.width=puckSize; // old size this.world.width/9
+        this.puck.height =puckSize; //this is 1/3 of the goal which is 1/3 of the width.
 		this.puck.anchor.setTo(0.5, 0.5);
 		// turn false the collision circle in production
 		this.physics.p2.enable(this.puck, false); //change to true to see hitcircle
@@ -73,8 +81,11 @@ BasicGame.Game.prototype = {
 		// paddles.setAll functin can set properties too.
 		this.paddles.forEach(function(paddle){
             //console.log(this.world.width)
-            paddle.width = this.world.width/6;
-            paddle.height = this.world.width/6;
+            
+            
+        
+            paddle.width = paddleSize;
+            paddle.height = paddleSize;
 			//paddle.scale.x=	Math.max(0.4, window.innerWidth/24000);
 			//paddle.scale.y=	paddle.scale.x;
 			paddle.anchor.setTo(0.5, 0.5);            
@@ -83,7 +94,7 @@ BasicGame.Game.prototype = {
 			//init movement
 			paddle.body.velocity.x = 5;
 			paddle.body.velocity.y = 5;
-			
+            
 		},this);
 		
 		//Physics for one player

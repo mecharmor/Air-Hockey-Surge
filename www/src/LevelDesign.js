@@ -43,8 +43,17 @@ function GenericLevel(me){
 	graphics.drawRect(me.world.width-30,me.world.centerY-40,30,30);
 	graphics.drawRect(me.world.width-30,me.world.centerY+10,30,30);
     
-    me.goalTopImage = me.add.sprite(me.world.width/3-10,-100,'goalTop');
-    me.goalTopImage.width = me.world.width/3+30;
-    me.goalBottomImage = me.add.sprite(me.world.width/3-10,me.world.height-40,'goalBottom');
-    me.goalBottomImage.width = me.world.width/3+30;
+    me.goalTopImage = me.add.sprite(0,0,'goalTop');
+    me.goalTopImage.anchor.setTo(0.5,0.25);
+    me.goalTopImage.height = me.world.height/30;
+    me.goalTopImage.width = me.world.width/3;
+    me.goalTopImage.x = me.world.centerX;
+    
+    me.goalBottomImage = me.add.sprite(0,0,'goalBottom');
+    me.goalBottomImage.width = me.world.width/3;
+    me.goalBottomImage.height = me.world.height/30;
+    me.goalBottomImage.anchor.setTo(0.5,0.75);
+    me.goalBottomImage.x = me.world.centerX;
+    me.goalBottomImage.y = me.world.height;
+    me.goalBottomImage.z=1000;
 };

@@ -61,7 +61,7 @@ BasicGame.Preloader.prototype = {
         
         //  This slows down the startup alot because mp3 has to decode (we should use wav files)
         
-        this.game.state.start('MainMenu');
+        
 		if (this.cache.isSoundDecoded('gameMusic'))
 		{
             //set global background music here
@@ -69,7 +69,8 @@ BasicGame.Preloader.prototype = {
             BasicGame.backgroundMusic.volume = 0.3;
             BasicGame.backgroundMusic.loop = true;
             BasicGame.backgroundMusic.play();
-            //BasicGame.backgroundMusic.stop();
+            BasicGame.backgroundMusic.stop();
+            this.game.state.start('MainMenu');
 		}
 
 	}

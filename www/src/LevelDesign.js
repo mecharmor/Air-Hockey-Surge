@@ -48,6 +48,7 @@ function GenericLevel(me){
     me.goalTopImage.height = me.world.height/30;
     me.goalTopImage.width = me.world.width/3;
     me.goalTopImage.x = me.world.centerX;
+    me.goalTopImage.alpha=0.5;
     
     me.goalBottomImage = me.add.sprite(0,0,'goalBottom');
     me.goalBottomImage.width = me.world.width/3;
@@ -55,5 +56,5 @@ function GenericLevel(me){
     me.goalBottomImage.anchor.setTo(0.5,0.75);
     me.goalBottomImage.x = me.world.centerX;
     me.goalBottomImage.y = me.world.height;
-    me.goalBottomImage.z=1000;
+    me.goalBottomImage.alpha=0.5;
 };

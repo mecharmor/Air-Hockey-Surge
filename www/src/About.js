@@ -25,7 +25,7 @@ BasicGame.About.prototype = {
         
         this.backMain = this.add.button(10,10,'mainMenuBtn',this.backToMainMenu,this);
         this.backMain.scale.setTo(.5,.5)
-        
+        this.backMain.x = this.world.centerX-this.backMain.width/2;
         //instructions
         var instructionsStr = "Say something here...";
         

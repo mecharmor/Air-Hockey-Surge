@@ -220,7 +220,7 @@ BasicGame.Game.prototype = {
         this.endGameBackMainBtn = this.make.button(75,75,'mainMenuBtn',this.mainMenuBack,this);
         this.endGameBackMainBtn.scale.setTo(.5,.5);
         this.endGameMenu.add(this.endGameBackMainBtn);
-        
+        this.endGameBackMainBtn.x = this.world.centerX-this.endGameBackMainBtn.width/2;
         //******************************************************************
 	},
 	update: function(){

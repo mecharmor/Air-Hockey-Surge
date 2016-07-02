@@ -35,9 +35,14 @@ BasicGame.Game.prototype = {
 	create: function () {
         // var starts here
 		var paddleSize = this.world.width/6;
+        //paddle min
         if( paddleSize < 100 ){
                 paddleSize = 100;
             }
+        //paddle max
+        if( paddleSize > 250){
+                paddleSize = 250;
+        }
         var puckSize = paddleSize *.66;
         
         // var ends here

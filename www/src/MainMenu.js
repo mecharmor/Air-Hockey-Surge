@@ -22,7 +22,7 @@ BasicGame.MainMenu.prototype = {
         // end lights out
 
         var splash = this.cache.getImage('preloaderBackground');
-        this.add.sprite(this.world.centerX-splash.width/2.0, 50, 'preloaderBackground');
+        this.add.sprite(this.world.centerX-splash.width/2.0, 20, 'preloaderBackground');
         
         //These are phaser buttons when clicked methods called
         this.pb = this.add.button(this.world.centerX-85, 200, 'numPlayers',this.changePlayer, this);

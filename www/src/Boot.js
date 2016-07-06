@@ -52,7 +52,7 @@ BasicGame.Boot.prototype = {
         //this.load.image('preloaderBackground', 'asset/airHockeySplash.png');
        
         //New Splish Splash
-        this.load.image('preloaderBackground', 'asset/air_hockey_photoshop/Normal/Airhockey_Splash.png');
+        this.load.image('preloaderBackground', 'asset/AirHockeySplashscreen.png');
 
         this.load.image('Watermark', 'asset/AirHockeyWatermark.png')
         this.load.image('preloaderBar', 'asset/preloader-bar.png');

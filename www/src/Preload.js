@@ -14,7 +14,7 @@ BasicGame.Preloader.prototype = {
         var splash = this.cache.getImage('preloaderBackground');
         var bar = this.cache.getImage('preloaderBar');
         // placing splash background as a sprite in the middle of the page 50 px from top
-        this.splashGraphic = this.add.sprite(this.world.centerX-splash.width/2.0, 50, 'preloaderBackground');
+        this.splashGraphic = this.add.sprite(this.world.centerX-splash.width/2.0, 20, 'preloaderBackground');
 		//adding the preloader bar as sprite in the middle 200 px from top
 		this.preloadBar = this.add.sprite(this.world.centerX-bar.width/2.0, 200, 'preloaderBar');
 

@@ -23,6 +23,9 @@ BasicGame.About.prototype = {
         this.stage.backgroundColor = '#ffffff'; //white?
         this.world.setBounds(0,0,this.world.width,2000);
         
+        var splash = this.cache.getImage('preloaderBackground');
+        this.add.sprite(this.world.centerX-splash.width/2.0, 20, 'preloaderBackground');
+        
         this.backMain = this.add.button(10,10,'mainMenuBtn',this.backToMainMenu,this);
         this.backMain.scale.setTo(.5,.5)
         this.backMain.x = this.world.centerX-this.backMain.width/2;

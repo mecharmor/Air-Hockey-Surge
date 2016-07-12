@@ -10,8 +10,9 @@ BasicGame.MainMenu.prototype = {
         
         this.world.setBounds(0,0,window.innerWidth, window.innerHeight);
         this.world.alpha = 1;
+        this.game.numPlayers = 1;
         
-        //draw board
+        //draw board in LevelDesign.js
         GenericLevel(this);
         
         //lights out on board?
@@ -21,20 +22,56 @@ BasicGame.MainMenu.prototype = {
         this.mnuBackground.alpha = 0.75;
         // end lights out
 
+        // Splash centered and scaled in the top half of screen
         var splash = this.cache.getImage('preloaderBackground');
-        this.add.sprite(this.world.centerX-splash.width/2.0, 20, 'preloaderBackground');
+        var splashSprite = this.add.sprite(0,0,'preloaderBackground');
+        splashSprite.anchor.setTo(0.5, 0.5);
+        splashSprite.y=this.world.centerY/2;
+        splashSprite.x=this.world.centerX;
         
-        //These are phaser buttons when clicked methods called
-        this.pb = this.add.button(this.world.centerX-85, 200, 'numPlayers',this.changePlayer, this);
-        this.mb = this.add.button(this.world.centerX-25, 200, 'musicToggle',this.changeMusic, this);
-        this.playbtn = this.add.button(this.world.centerX+35, 200, 'playBtn', this.startGame, this);
+        var btnWidth = this.world.width/2;
+        if(btnWidth>535) btnWidth=535;
+        var scaleFactor = btnWidth/535; //535 width of buttons
+        var spacing = 20;
         
-        var abt = this.cache.getImage('aboutBtn');
-        var scaleFactor = (this.world.width/3)/abt.width;  // new width div old width
-        this.aboutbtn = this.add.button(10, 10, 'aboutBtn', this.aboutGame, this);
-        this.aboutbtn.scale.setTo(scaleFactor,scaleFactor);
-        this.aboutbtn.x = this.world.centerX-this.aboutbtn.width/2;
-        this.aboutbtn.y = 300;
+        //play button
+        var pb = this.cache.getImage('playBtn');
+        var playButton = this.add.button(0,0, 'playBtn', this.startGame, this);
+        playButton.width = btnWidth;
+        playButton.height = pb.height*scaleFactor;
+        playButton.anchor.setTo(0.5,0.5);
+        playButton.x=this.world.centerX;
+        playButton.y=this.world.centerY+playButton.height/2;
+        
+        //num players button
+        var npb = this.cache.getImage('numPlayers');
+        this.numPlayersButton = this.add.button(0,0, 'numPlayers', this.changePlayer, this);
+        this.numPlayersButton.width = btnWidth;
+        this.numPlayersButton.height = npb.height*scaleFactor;
+        this.numPlayersButton.anchor.setTo(0.5,0.5);
+        this.numPlayersButton.x=this.world.centerX;
+        this.numPlayersButton.y=playButton.y+playButton.height;
+        
+        //music button
+        var mb = this.cache.getImage('musicToggle');
+        this.musicButton = this.add.button(0,0, 'musicToggle', this.changeMusic, this);
+        this.musicButton.width = btnWidth;
+        this.musicButton.height = mb.height*scaleFactor;
+        this.musicButton.anchor.setTo(0.5,0.5);
+        this.musicButton.x=this.world.centerX;
+        this.musicButton.y=this.numPlayersButton.y+this.numPlayersButton.height;
+
+
+        //about Button
+        var ab = this.cache.getImage('aboutBtn');
+        var aboutButton = this.add.button(0,0, 'aboutBtn', this.aboutGame, this);
+        aboutButton.width = btnWidth;
+        aboutButton.height = ab.height*(aboutButton.width/ab.width);
+        aboutButton.anchor.setTo(0.5,0.5);
+        aboutButton.x=this.world.centerX;
+        aboutButton.y=this.musicButton.y+this.musicButton.height;
+      
+
     
     },
     
@@ -51,18 +88,18 @@ BasicGame.MainMenu.prototype = {
         this.game.numPlayers +=1;
         if(this.game.numPlayers == 5)
             this.game.numPlayers = 1;
-        this.pb.frame = this.game.numPlayers -1;
+        this.numPlayersButton.frame = this.game.numPlayers -1;
     
     },
     changeMusic: function(){
             if(this.game.music){
                 BasicGame.backgroundMusic.stop();
                 this.game.music = false;
-                this.mb.frame=1;
+                this.musicButton.frame=1;
             }else{
                 BasicGame.backgroundMusic.play();
                 this.game.music = true;
-                this.mb.frame=0;
+                this.musicButton.frame=0;
             }
     
     },

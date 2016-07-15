@@ -31,6 +31,7 @@ BasicGame.MainMenu.prototype = {
         
         var btnWidth = this.world.width/2;
         if(btnWidth>535) btnWidth=535;
+        if(btnWidth<223) btnWidth=223; //223 width of spash screen this is min value
         var scaleFactor = btnWidth/535; //535 width of buttons
         var spacing = 20;
         

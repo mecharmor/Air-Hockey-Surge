@@ -7,7 +7,8 @@ BasicGame = {
     score: 0,
     backgroundMusic: null, //bacground music will be global set in next state
     music: true, //start with music on
-    numPlayers: 1
+    numPlayers: 1,
+    btnWidth: 0,
     
 };
 
@@ -25,24 +26,34 @@ BasicGame.Boot.prototype = {
         this.input.addPointer();  // 4th pointer
         this.input.addPointer();  // 5th pointer
 
-        this.stage.disableVisibilityChange = true;
+       // this.stage.disableVisibilityChange = true;
+        this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+        this.scale.pageAlignHorizontally = true;
+        this.scale.pageAlignVertically = true;
+        //this.scale.setResizeCallback(this.gameResized, this);
+        
+        // global button width
+        this.game.btnWidth = this.world.width/3;
+        if(this.game.btnWidth>300) this.game.btnWidth=300;
+        if(this.game.btnWidth<200) this.game.btnWidth=200; //min-value
+        
         this.stage.backgroundColor = '#fff';
 
-        if (this.game.device.desktop)
-        {
-            this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-            //this.scale.setMinMax(480, 260, 1024, 768);
-            this.scale.pageAlignHorizontally = true;
-            this.scale.pageAlignVertically = true;
-        }
-        else
-        {
-            this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-            this.scale.pageAlignHorizontally = true;
-            this.scale.pageAlignVertically = true;
-            this.scale.forceOrientation(false, true);  //portrait game
-
-        }
+//        if (this.game.device.desktop)
+//        {
+//            this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+//            //this.scale.setMinMax(480, 260, 1024, 768);
+//            this.scale.pageAlignHorizontally = true;
+//            this.scale.pageAlignVertically = true;
+//        }
+//        else
+//        {
+//            this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+//            this.scale.pageAlignHorizontally = true;
+//            this.scale.pageAlignVertically = true;
+//            this.scale.forceOrientation(false, true);  //portrait game
+//
+//        }
         
     },
 
@@ -63,6 +74,7 @@ BasicGame.Boot.prototype = {
     },
 
     gameResized: function (width, height) {
+        
 
         //  This could be handy if you need to do any extra processing if the game resizes.
         //  A resize could happen if for example swapping orientation on a device or resizing the browser window.

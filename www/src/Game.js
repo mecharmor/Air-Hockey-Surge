@@ -190,7 +190,7 @@ BasicGame.Game.prototype = {
 		this.mnutxt.anchor.setTo(.5, .5);
         
         var tempBtn = this.cache.getImage('gameContinueBtn');
-        var scaleFactor = (this.world.width/2) / tempBtn.width ;  //new size div old size
+        var scaleFactor = this.game.btnWidth/535; //535 width of buttons
         this.continueGame = this.pauseMenu.create(19,10,'gameContinueBtn');
         this.continueGame.scale.setTo(scaleFactor,scaleFactor);
         this.continueGame.x = this.world.centerX-this.continueGame.width/2;
@@ -229,7 +229,7 @@ BasicGame.Game.prototype = {
 		this.endtxt.anchor.setTo(.5, .5);
         
         this.endGameBackMainBtn = this.make.button(75,75,'mainMenuBtn',this.mainMenuBack,this);
-        this.endGameBackMainBtn.scale.setTo(.5,.5);
+        this.endGameBackMainBtn.scale.setTo(scaleFactor,scaleFactor);
         this.endGameMenu.add(this.endGameBackMainBtn);
         this.endGameBackMainBtn.x = this.world.centerX-this.endGameBackMainBtn.width/2;
         //******************************************************************

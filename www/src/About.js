@@ -6,6 +6,9 @@ BasicGame.About = function (game) {
 BasicGame.About.prototype = {
 
     create: function () {   
+        //draw board in LevelDesign.js
+        GenericLevel(this);
+
         //awesome plugin I found...
         this.kineticScrolling = this.game.plugins.add(Phaser.Plugin.KineticScrolling);
         this.kineticScrolling.configure({
@@ -21,20 +24,31 @@ BasicGame.About.prototype = {
         //*********************** works like majik
 
         this.stage.backgroundColor = '#ffffff'; //white?
+        this.holdHeight = this.world.height;
         this.world.setBounds(0,0,this.world.width,2000);
         
-        var splash = this.cache.getImage('preloaderBackground');
-        this.add.sprite(this.world.centerX-splash.width/2.0, 20, 'preloaderBackground');
+                        //lights out on board?
+        this.mnuBackground = this.add.sprite(0,0,'gameMenuBackground');
+        this.mnuBackground.width = this.world.width;
+        this.mnuBackground.height = this.world.height;
+        this.mnuBackground.alpha = 0.75;
+        // end lights out
         
+        var splash = this.cache.getImage('preloaderBackground');
+        this.add.sprite(this.world.centerX-splash.width/2.0, 0, 'preloaderBackground');
+        
+        var scaleFactor = this.game.btnWidth/535; //535 width of buttons
         this.backMain = this.add.button(10,10,'mainMenuBtn',this.backToMainMenu,this);
-        this.backMain.scale.setTo(.5,.5)
+        this.backMain.scale.setTo(scaleFactor,scaleFactor);
         this.backMain.x = this.world.centerX-this.backMain.width/2;
+        this.backMain.y = splash.height;
         //instructions
         var instructionsStr = "Say something here...";
         
-        var text1 = this.add.text(this.world.centerX, 200, instructionsStr, {
+        var text1 = this.add.text(this.world.centerX, this.backMain.y+this.backMain.height, instructionsStr, {
 			fontFamily:	"arial",
 			fontSize:	"14px",
+            fill: "white",
 		});
         text1.x=this.world.centerX-text1.width*0.5;
         //****************************************
@@ -42,7 +56,8 @@ BasicGame.About.prototype = {
         // developers
         var devStyle = {
             font:	"14px Courier New",
-            align: "center"
+            align: "center",
+            fill: "white"
         };
         var creditStr = "***********************\n"+
                         "College of the Sequoias\n"+
@@ -95,7 +110,7 @@ BasicGame.About.prototype = {
     
 
     backToMainMenu: function (btn) {
-
+        this.world.setBounds(0,0,this.world.width,this.holdHeight);
         this.game.state.start('MainMenu');
 
     }

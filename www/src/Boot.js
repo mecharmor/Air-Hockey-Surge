@@ -6,7 +6,8 @@ BasicGame = {
     /* access globals using syntax: BasicGame.score anywhere in app  */
     score: 0,
     backgroundMusic: null, //bacground music will be global set in next state
-    music: true //start with music on
+    music: true, //start with music on
+    numPlayers: 1
     
 };
 

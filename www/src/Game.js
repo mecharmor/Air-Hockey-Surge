@@ -84,14 +84,9 @@ BasicGame.Game.prototype = {
         
 		// paddles.setAll functin can set properties too.
 		this.paddles.forEach(function(paddle){
-            //console.log(this.world.width)
-            
-            
-        
             paddle.width = paddleSize;
             paddle.height = paddleSize;
-			//paddle.scale.x=	Math.max(0.4, window.innerWidth/24000);
-			//paddle.scale.y=	paddle.scale.x;
+
 			paddle.anchor.setTo(0.5, 0.5);            
 			paddle.body.collideWorldBounds = true;
 			paddle.body.setCircle(paddle.width/3); //less than one-half to account for outer glow
@@ -179,7 +174,6 @@ BasicGame.Game.prototype = {
 //        sideBar2.y = this.world.centerY;  
         //************************************************************
         
-
         
         // game menu work here ****************************************
         this.pauseMenu = this.game.add.group();
@@ -200,12 +194,24 @@ BasicGame.Game.prototype = {
         this.continueGame = this.pauseMenu.create(19,10,'gameContinueBtn');
         this.continueGame.scale.setTo(scaleFactor,scaleFactor);
         this.continueGame.x = this.world.centerX-this.continueGame.width/2;
-        this.continueGame.y = this.world.centerY-this.continueGame.height-10;
+        this.continueGame.y = this.world.height/6;
         
         this.quitGame = this.pauseMenu.create(19,10,'gameMenuQuitBtn');
         this.quitGame.scale.setTo(scaleFactor,scaleFactor);
         this.quitGame.x = this.world.centerX-this.quitGame.width/2;
-        this.quitGame.y = this.world.centerY+10;
+        this.quitGame.y = this.continueGame.y+this.continueGame.height;
+
+        var mb = this.cache.getImage('musicToggle');
+        this.musicButton = this.pauseMenu.create(0,0, 'musicToggle');
+        this.musicButton.scale.setTo(scaleFactor,scaleFactor);
+        //this.musicButton.anchor.setTo(0.5,0.5);
+        this.musicButton.x=this.world.centerX-this.musicButton.width/2;
+        this.musicButton.y=this.quitGame.y+this.continueGame.height;
+        if(this.game.music){
+                this.musicButton.frame=0;
+        }else{
+                this.musicButton.frame=1;
+        }
         //******************************************************************
         
         // End game menu work here ****************************************
@@ -292,11 +298,22 @@ BasicGame.Game.prototype = {
                 this.game.paused = false;        
                 this.pauseMenu.visible = false;
             }
-        }
-        if (this.game.paused) {
+      
             if (this.quitGame.getBounds().contains(this.game.input.x, this.game.input.y)) {
                 this.game.paused = false;        
                 this.state.start('MainMenu');
+            }
+            
+            if (this.musicButton.getBounds().contains(this.game.input.x, this.game.input.y)) {
+                if(this.game.music){
+                    BasicGame.backgroundMusic.stop();
+                    this.game.music = false;
+                    this.musicButton.frame=1;
+                }else{
+                    BasicGame.backgroundMusic.play();
+                    this.game.music = true;
+                    this.musicButton.frame=0;
+                }
             }
         }
  

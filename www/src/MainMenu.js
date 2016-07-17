@@ -8,10 +8,8 @@ BasicGame.MainMenu.prototype = {
     
     init: function() {
         
-        this.world.setBounds(0,0,window.innerWidth, window.innerHeight);
         this.world.alpha = 1;
-        this.game.numPlayers = 1;
-        
+
         //draw board in LevelDesign.js
         GenericLevel(this);
         
@@ -22,29 +20,25 @@ BasicGame.MainMenu.prototype = {
         this.mnuBackground.alpha = 0.75;
         // end lights out
 
-        // Splash centered and scaled in the top half of screen
+        // Air Hockey Logo at top
         var splash = this.cache.getImage('preloaderBackground');
         var splashSprite = this.add.sprite(0,0,'preloaderBackground');
-        splashSprite.anchor.setTo(0.5, 0.5);
-        splashSprite.y=this.world.centerY/2;
-        splashSprite.x=this.world.centerX;
+        splashSprite.x=this.world.centerX - splash.width/2;
+        splashSprite.y=0;
         
-        var btnWidth = this.world.width/2;
-        if(btnWidth>535) btnWidth=535;
-        if(btnWidth<223) btnWidth=223; //223 width of spash screen this is min value
+        var btnWidth = this.world.width/3;
+        if(btnWidth>300) btnWidth=300;
+        if(btnWidth<200) btnWidth=200; //min-value
         var scaleFactor = btnWidth/535; //535 width of buttons
-        var spacing = 20;
         
-        //play button
         var pb = this.cache.getImage('playBtn');
         var playButton = this.add.button(0,0, 'playBtn', this.startGame, this);
         playButton.width = btnWidth;
         playButton.height = pb.height*scaleFactor;
         playButton.anchor.setTo(0.5,0.5);
         playButton.x=this.world.centerX;
-        playButton.y=this.world.centerY+playButton.height/2;
+        playButton.y=splashSprite.height+10;
         
-        //num players button
         var npb = this.cache.getImage('numPlayers');
         this.numPlayersButton = this.add.button(0,0, 'numPlayers', this.changePlayer, this);
         this.numPlayersButton.width = btnWidth;
@@ -52,8 +46,8 @@ BasicGame.MainMenu.prototype = {
         this.numPlayersButton.anchor.setTo(0.5,0.5);
         this.numPlayersButton.x=this.world.centerX;
         this.numPlayersButton.y=playButton.y+playButton.height;
+        this.numPlayersButton.frame = this.game.numPlayers-1;
         
-        //music button
         var mb = this.cache.getImage('musicToggle');
         this.musicButton = this.add.button(0,0, 'musicToggle', this.changeMusic, this);
         this.musicButton.width = btnWidth;
@@ -61,9 +55,12 @@ BasicGame.MainMenu.prototype = {
         this.musicButton.anchor.setTo(0.5,0.5);
         this.musicButton.x=this.world.centerX;
         this.musicButton.y=this.numPlayersButton.y+this.numPlayersButton.height;
+        if(this.game.music){
+                this.musicButton.frame=0;
+        }else{
+                this.musicButton.frame=1;
+        }
 
-
-        //about Button
         var ab = this.cache.getImage('aboutBtn');
         var aboutButton = this.add.button(0,0, 'aboutBtn', this.aboutGame, this);
         aboutButton.width = btnWidth;
@@ -72,8 +69,6 @@ BasicGame.MainMenu.prototype = {
         aboutButton.x=this.world.centerX;
         aboutButton.y=this.musicButton.y+this.musicButton.height;
       
-
-    
     },
     
     

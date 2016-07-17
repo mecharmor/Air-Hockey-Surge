@@ -75,15 +75,19 @@ BasicGame.About.prototype = {
         paulTxt.x=this.world.centerX-paulTxt.width*0.5;
         //this.add.image(this.world.centerX, 755, 'paul').anchor.setTo(.5);
         
-        var johnTxt = this.add.text(0, 850, "John Redden\njtredden@gmail.com", devStyle);
+        var johnTxt = this.add.text(0, 860, "John Redden\njtredden@gmail.com", devStyle);
         johnTxt.x=this.world.centerX-johnTxt.width*0.5;
         //this.add.image(this.world.centerX, 970, 'john').anchor.setTo(.5);
+        
+        var geraldTxt = this.add.text(0,1080, "Gerald Jumper\njumpergerald@gmail.com",devStyle);
+        geraldTxt.x=this.world.centerX-geraldTxt.width*0.5;
+        //this.add.image(this.world.centerX,numbers,'gerald').anchor.setTo(0.5);
         
         
         var specialStr = "***********************\n"+
                         "Special Thanks to:\n"+
                         "***********************\n";
-        var text5 = this.add.text(this.world.centerX, 1070, specialStr, devStyle);
+        var text5 = this.add.text(this.world.centerX, 1300, specialStr, devStyle);
         text5.x=this.world.centerX-text5.width*0.5;
                 
         var creditStyle = {

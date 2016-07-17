@@ -26,14 +26,11 @@ BasicGame.MainMenu.prototype = {
         splashSprite.x=this.world.centerX - splash.width/2;
         splashSprite.y=0;
         
-        var btnWidth = this.world.width/3;
-        if(btnWidth>300) btnWidth=300;
-        if(btnWidth<200) btnWidth=200; //min-value
-        var scaleFactor = btnWidth/535; //535 width of buttons
+        var scaleFactor = this.game.btnWidth/535; //535 width of buttons
         
         var pb = this.cache.getImage('playBtn');
         var playButton = this.add.button(0,0, 'playBtn', this.startGame, this);
-        playButton.width = btnWidth;
+        playButton.width = this.game.btnWidth;
         playButton.height = pb.height*scaleFactor;
         playButton.anchor.setTo(0.5,0.5);
         playButton.x=this.world.centerX;
@@ -42,7 +39,7 @@ BasicGame.MainMenu.prototype = {
                 
         var sb = this.cache.getImage('settingsBtn');
         var settingsButton = this.add.button(0,0, 'settingsBtn', this.settings, this);
-        settingsButton.width = btnWidth;
+        settingsButton.width = this.game.btnWidth;
         settingsButton.height = sb.height * (settingsButton.width/sb.width);
         settingsButton.anchor.setTo(0.5,0.5);
         settingsButton.x = this.world.centerX;
@@ -50,7 +47,7 @@ BasicGame.MainMenu.prototype = {
         
         var ab = this.cache.getImage('aboutBtn');
         var aboutButton = this.add.button(0,0, 'aboutBtn', this.aboutGame, this);
-        aboutButton.width = btnWidth;
+        aboutButton.width = this.game.btnWidth;
         aboutButton.height = ab.height*(aboutButton.width/ab.width);
         aboutButton.anchor.setTo(0.5,0.5);
         aboutButton.x=this.world.centerX;

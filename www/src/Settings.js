@@ -26,14 +26,11 @@ BasicGame.Settings.prototype = {
         splashSprite.x=this.world.centerX - splash.width/2;
         splashSprite.y=0;
         
-        var btnWidth = this.world.width/3;
-        if(btnWidth>300) btnWidth=300;
-        if(btnWidth<200) btnWidth=200; //min-value
-        var scaleFactor = btnWidth/535; //535 width of buttons
+        var scaleFactor = this.game.btnWidth/535; //535 width of buttons
         
         var pb = this.cache.getImage('mainMenuBtnBlue');
         var backMain = this.add.button(0,0, 'mainMenuBtnBlue', this.backToMainMenu, this);
-        backMain.width = btnWidth;
+        backMain.width = this.game.btnWidth;
         backMain.height = pb.height*scaleFactor;
         backMain.anchor.setTo(0.5,0.5);
         backMain.x=this.world.centerX;
@@ -41,7 +38,7 @@ BasicGame.Settings.prototype = {
         
         var npb = this.cache.getImage('numPlayers');
         this.numPlayersButton = this.add.button(0,0, 'numPlayers', this.changePlayer, this);
-        this.numPlayersButton.width = btnWidth;
+        this.numPlayersButton.width = this.game.btnWidth;
         this.numPlayersButton.height = npb.height*scaleFactor;
         this.numPlayersButton.anchor.setTo(0.5,0.5);
         this.numPlayersButton.x=this.world.centerX;
@@ -50,7 +47,7 @@ BasicGame.Settings.prototype = {
         
         var mb = this.cache.getImage('musicToggle');
         this.musicButton = this.add.button(0,0, 'musicToggle', this.changeMusic, this);
-        this.musicButton.width = btnWidth;
+        this.musicButton.width = this.game.btnWidth;
         this.musicButton.height = mb.height*scaleFactor;
         this.musicButton.anchor.setTo(0.5,0.5);
         this.musicButton.x=this.world.centerX;

@@ -57,6 +57,7 @@ BasicGame.MainMenu.prototype = {
         aboutButton.y=settingsButton.y+settingsButton.height;
         
 
+        
     },
     
     

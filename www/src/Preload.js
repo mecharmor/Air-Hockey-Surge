@@ -36,6 +36,7 @@ BasicGame.Preloader.prototype = {
         this.load.image('aboutBtn', 'asset/gameMenu-about.png');
         this.load.image('mainMenuBtn', 'asset/gameMenu-main.png');
         this.load.image('mainMenuBtnBlue', 'asset/gameMenu-main-blue.png')
+        this.load.image('settingsBtn', 'asset/gameMenu-setttings.png')
         
         this.load.image('gameContinueBtn', 'asset/gameMenu-continue.png');
         this.load.image('gameMenuBackground', 'asset/gameMenu-background.png');

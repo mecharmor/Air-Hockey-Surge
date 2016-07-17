@@ -40,8 +40,8 @@ BasicGame.MainMenu.prototype = {
         playButton.y=splashSprite.height+10;
 
                 
-        var sb = this.cache.getImage('mainMenuBtn');
-        var settingsButton = this.add.button(0,0, 'mainMenuBtn', this.settings, this);
+        var sb = this.cache.getImage('settingsBtn');
+        var settingsButton = this.add.button(0,0, 'settingsBtn', this.settings, this);
         settingsButton.width = btnWidth;
         settingsButton.height = sb.height * (settingsButton.width/sb.width);
         settingsButton.anchor.setTo(0.5,0.5);

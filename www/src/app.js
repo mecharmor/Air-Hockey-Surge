@@ -12,6 +12,7 @@
     game.state.add('MainMenu', BasicGame.MainMenu);
     game.state.add('Preload', BasicGame.Preloader);
     game.state.add('Boot', BasicGame.Boot);
+    game.state.add('Settings', BasicGame.Settings);
     
     game.numPlayers = 1;
     game.music = true;

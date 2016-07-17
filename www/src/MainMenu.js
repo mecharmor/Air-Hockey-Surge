@@ -38,37 +38,25 @@ BasicGame.MainMenu.prototype = {
         playButton.anchor.setTo(0.5,0.5);
         playButton.x=this.world.centerX;
         playButton.y=splashSprite.height+10;
-        
-        var npb = this.cache.getImage('numPlayers');
-        this.numPlayersButton = this.add.button(0,0, 'numPlayers', this.changePlayer, this);
-        this.numPlayersButton.width = btnWidth;
-        this.numPlayersButton.height = npb.height*scaleFactor;
-        this.numPlayersButton.anchor.setTo(0.5,0.5);
-        this.numPlayersButton.x=this.world.centerX;
-        this.numPlayersButton.y=playButton.y+playButton.height;
-        this.numPlayersButton.frame = this.game.numPlayers-1;
-        
-        var mb = this.cache.getImage('musicToggle');
-        this.musicButton = this.add.button(0,0, 'musicToggle', this.changeMusic, this);
-        this.musicButton.width = btnWidth;
-        this.musicButton.height = mb.height*scaleFactor;
-        this.musicButton.anchor.setTo(0.5,0.5);
-        this.musicButton.x=this.world.centerX;
-        this.musicButton.y=this.numPlayersButton.y+this.numPlayersButton.height;
-        if(this.game.music){
-                this.musicButton.frame=0;
-        }else{
-                this.musicButton.frame=1;
-        }
 
+                
+        var sb = this.cache.getImage('mainMenuBtn');
+        var settingsButton = this.add.button(0,0, 'mainMenuBtn', this.settings, this);
+        settingsButton.width = btnWidth;
+        settingsButton.height = sb.height * (settingsButton.width/sb.width);
+        settingsButton.anchor.setTo(0.5,0.5);
+        settingsButton.x = this.world.centerX;
+        settingsButton.y=playButton.y+playButton.height;
+        
         var ab = this.cache.getImage('aboutBtn');
         var aboutButton = this.add.button(0,0, 'aboutBtn', this.aboutGame, this);
         aboutButton.width = btnWidth;
         aboutButton.height = ab.height*(aboutButton.width/ab.width);
         aboutButton.anchor.setTo(0.5,0.5);
         aboutButton.x=this.world.centerX;
-        aboutButton.y=this.musicButton.y+this.musicButton.height;
-      
+        aboutButton.y=settingsButton.y+settingsButton.height;
+        
+
     },
     
     
@@ -80,25 +68,6 @@ BasicGame.MainMenu.prototype = {
 		//	Do some nice funky main menu effect here
 
 	},
-    changePlayer: function(){
-        this.game.numPlayers +=1;
-        if(this.game.numPlayers == 5)
-            this.game.numPlayers = 1;
-        this.numPlayersButton.frame = this.game.numPlayers -1;
-    
-    },
-    changeMusic: function(){
-            if(this.game.music){
-                BasicGame.backgroundMusic.stop();
-                this.game.music = false;
-                this.musicButton.frame=1;
-            }else{
-                BasicGame.backgroundMusic.play();
-                this.game.music = true;
-                this.musicButton.frame=0;
-            }
-    
-    },
 
 	startGame: function (btn) {
         
@@ -108,11 +77,17 @@ BasicGame.MainMenu.prototype = {
 		//this.music.stop();
 
 	},
+    settings: function(btn) {
     
+        this.game.state.start('Settings');
+    
+    },
     aboutGame: function (btn) {
         
         this.game.state.start('About');
 
-	}
+	},
+
+    
 
 };

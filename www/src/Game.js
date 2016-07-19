@@ -161,8 +161,8 @@ BasicGame.Game.prototype = {
         mmBtn.anchor.setTo(.5, .5);
         mmBtn.width = this.world.width/20;
         mmBtn.height = mmBtn.width;
-        mmBtn.x = this.world.width - 25;
-        mmBtn.y = this.world.centerY;
+        mmBtn.x = this.world.width - 35; 
+        mmBtn.y = 35; //this.world.centerY
         mmBtn.alpha = 0.85;
         
 //        var sideBar2 = this.add.sprite(0, 0, 'sideBar');

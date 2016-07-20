@@ -43,18 +43,18 @@ function GenericLevel(me){
 	graphics.drawRect(me.world.width-30,me.world.centerY-40,30,30);
 	graphics.drawRect(me.world.width-30,me.world.centerY+10,30,30);
     
-    me.goalTopImage = me.add.sprite(0,0,'goalTop');
-    me.goalTopImage.anchor.setTo(0.5,0.25);
-    me.goalTopImage.height = me.world.height/30;
-    me.goalTopImage.width = me.world.width/3;
-    me.goalTopImage.x = me.world.centerX;
-    me.goalTopImage.alpha=0.5;
+    me.goalRedImage = me.add.sprite(0,0,'goalRed');
+    me.goalRedImage.anchor.setTo(0.5,0.5);
+    me.goalRedImage.height = me.world.height/30;
+    me.goalRedImage.width = me.world.width/3;
+    me.goalRedImage.x = me.world.centerX;
+    me.goalRedImage.alpha=0.5;
     
-    me.goalBottomImage = me.add.sprite(0,0,'goalBottom');
-    me.goalBottomImage.width = me.world.width/3;
-    me.goalBottomImage.height = me.world.height/30;
-    me.goalBottomImage.anchor.setTo(0.5,0.75);
-    me.goalBottomImage.x = me.world.centerX;
-    me.goalBottomImage.y = me.world.height;
-    me.goalBottomImage.alpha=0.5;
+    me.goalBlueImage = me.add.sprite(0,0,'goalBottom');
+    me.goalBlueImage.width = me.world.width/3;
+    me.goalBlueImage.height = me.world.height/30;
+    me.goalBlueImage.anchor.setTo(0.5,0.5);
+    me.goalBlueImage.x = me.world.centerX;
+    me.goalBlueImage.y = me.world.height;
+    me.goalBlueImage.alpha=0.5;
 };

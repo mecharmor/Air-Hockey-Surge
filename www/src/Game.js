@@ -17,18 +17,17 @@ BasicGame.Game.prototype = {
 		this.physics.startSystem(Phaser.Physics.P2JS);
 		this.physics.p2.restitution = 0.85; //this gives bounce
 				
-		//set up goals
-		this.goalTop = this.add.sprite(this.world.centerX-4, 6);
-		this.goalBottom = this.add.sprite(this.world.centerX-4, this.world.height-12);
-		
-		this.physics.p2.enable([this.goalTop,this.goalBottom], false); //change to true to see
+		//set up goals (sprites without an image with sizing based on goalImages on board)
+		this.goalRed = this.add.sprite(this.goalRedImage.x, this.goalRedImage.y);
+        this.goalRed.anchor.setTo(0.5,0.5);
+		this.goalBlue = this.add.sprite(this.goalBlueImage.x, this.goalBlueImage.y);
+        this.goalBlue.anchor.setTo(0.5,0.5);
+		this.physics.p2.enable([this.goalRed,this.goalBlue], false); //change to true to see
         //set goal hit rectangles
-        this.goalTop.body.static = true;
-        this.goalTop.body.setRectangle(0.75*this.world.width/3,this.world.height/50,5,-10);
-        this.goalBottom.body.static = true;
-        this.goalBottom.body.setRectangle(0.75*this.world.width/3,this.world.height/50,5,10);
-        this.goalBottom.width = this.world.width/3+30;
-
+        this.goalRed.body.static = true;
+        this.goalRed.body.setRectangle(0.75*this.goalRedImage.width,this.goalRedImage.height);
+        this.goalBlue.body.static = true;
+        this.goalBlue.body.setRectangle(0.75*this.goalBlueImage.width,this.goalBlueImage.height);
 		
 	},
 
@@ -118,11 +117,11 @@ BasicGame.Game.prototype = {
 		
 
 		
-		this.goalTop.bringToTop();
-		this.goalBottom.bringToTop();
+		this.goalRed.bringToTop();
+		this.goalBlue.bringToTop();
 		
-		this.puck.body.createBodyCallback(this.goalTop, this.scoreTop, this);
-		this.puck.body.createBodyCallback(this.goalBottom, this.scoreBottom, this);
+		this.puck.body.createBodyCallback(this.goalRed, this.scoreTop, this);
+		this.puck.body.createBodyCallback(this.goalBlue, this.scoreBottom, this);
 		this.physics.p2.setImpactEvents(true);
 		
 		//input event liseteners

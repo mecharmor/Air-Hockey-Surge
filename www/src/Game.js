@@ -5,7 +5,7 @@
 // create Game function in BasicGame
 BasicGame.Game = function (game) {
 };
-//I am not very good with computers plz help -Graham
+
 // set Game function prototype
 BasicGame.Game.prototype = {
 	
@@ -37,29 +37,21 @@ BasicGame.Game.prototype = {
 	},
 
 	create: function () {
-        // var starts here
-		var paddleSize = this.world.width/6;
-        //paddle min
-        if( paddleSize < 100 ){
-                paddleSize = 100;
-            }
-        //paddle max
-        if( paddleSize > 250){
-                paddleSize = 250;
-        }
-        var puckSize = paddleSize *.66;
         
-        // var ends here
+		var paddleSize = this.world.width/6;
+        //paddle min/max where puck size depends on the paddles
+        if( paddleSize < 100 ) paddleSize = 100;
+        if( paddleSize > 250 ) paddleSize = 250;
+        var puckSize = paddleSize * 0.66;
         
 		// Add puck to the center of the stage
 		this.puck = this.add.sprite(this.world.centerX, this.world.centerY,'puck');
-		// scale the puck here
         this.puck.width=puckSize; // old size this.world.width/9
         this.puck.height =puckSize; //this is 1/3 of the goal which is 1/3 of the width.
 		this.puck.anchor.setTo(0.5, 0.5);
-		// turn false the collision circle in production
+		// add physics to the puck
 		this.physics.p2.enable(this.puck, false); //change to true to see hitcircle
-		this.puck.body.setCircle(puckSize*.8/2);  //scale the puck hit box here.
+		this.puck.body.setCircle(puckSize*0.35);  //scale the puck hit box here.
 		this.puck.body.collideWorldBounds = true;
 		this.puck.body.velocity.x = 20;
 		this.puck.body.velocity.y = 100;
@@ -69,20 +61,41 @@ BasicGame.Game.prototype = {
 		this.puckClack =  this.add.audio('puckHitSnd');
 		this.puckWhoosh =  this.add.audio('whooshSnd');
 	  
-		//add paddles up to 4 (able to add multiple paddles)
+		//Place paddles up to 4 (able to add multiple paddles)
 		this.paddles = this.add.group(); // up to 4 players??
 		if(this.game.numPlayers == 1){
 			//one player setup with two paddles one named
-			this.computer = this.paddles.create(50, 50  ,'paddleR');
-			this.paddles.create(this.world.centerX, this.world.height-100 ,'paddleB');
-			// add spring to this.computer sprite
+            this.computer = this.paddles.create(0, 0,'paddleR');
+            var player = this.paddles.create(0, 0,'paddleB');
+            if(this.game.mode==="portrait"){
+                this.computer.x=this.world.centerX;
+                this.computer.y=this.world.height/3;
+                player.x=this.world.centerX;
+                player.y=this.world.centerY+this.world.height/3;                
+            }else{
+                this.computer.x=this.world.width/3;
+                this.computer.y=this.world.centerY;
+                player.x=this.world.centerX+this.world.width/3;
+                player.y=this.world.centerY;  
+            }
+		
 		}else{
-			for(i=0; i<this.game.numPlayers; i++){
-				if(i%2 == 0)
-					this.paddles.create(20+100*i, 100  ,'paddleR');
-				else
-					this.paddles.create(20+50*i,this.world.height-100,'paddleB');
-			}
+            if(this.game.mode==="portrait"){
+                for(i=0; i<this.game.numPlayers; i++){
+                    if(i%2 == 0)
+                        this.paddles.create(100*i + this.world.width/3, this.world.height/6  ,'paddleR');
+                    else
+                        this.paddles.create(20+50*i,this.world.height-100,'paddleB');
+                }
+            }else{
+                for(i=0; i<this.game.numPlayers; i++){
+                    if(i%2 == 0)
+                        this.paddles.create(this.world.width/6, 20+100*i + this.world.height/3   ,'paddleR');
+                    else
+                        this.paddles.create(this.world.centerX+this.world.width/3,100*i-150+ this.world.height/3,'paddleB');
+                }
+            }
+
 		}
 		this.physics.p2.enable(this.paddles,false); //change to true to see hitcircle
         

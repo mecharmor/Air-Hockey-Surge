@@ -38,6 +38,7 @@ BasicGame.Boot.prototype = {
         if(this.game.btnWidth<200) this.game.btnWidth=200; //min-value
         
         this.stage.backgroundColor = '#fff';
+        
 
 //        if (this.game.device.desktop)
 //        {

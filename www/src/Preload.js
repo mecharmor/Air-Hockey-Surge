@@ -28,7 +28,7 @@ BasicGame.Preloader.prototype = {
         this.load.image('puck', 'asset/Surge_Puck.png');
         this.load.image('paddleR', 'asset/air_hockey_photoshop/Normal/RedPuck_ooohShiny.png');//newPaddle.png');
         this.load.image('paddleB', 'asset/air_hockey_photoshop/Normal/BluePuck_ooohShiny.png');//newPaddleBlue.png');
-        this.load.image('goalBottom', 'asset/Goal_blue.png');
+        this.load.image('goalBlue', 'asset/Goal_blue.png');
         this.load.image('goalRed', 'asset/Goal_red.png');
         this.load.image('airhole', 'asset/hole4.png');
         this.load.image('playBtn', 'asset/play_new.png');

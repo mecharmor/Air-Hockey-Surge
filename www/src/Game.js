@@ -25,9 +25,14 @@ BasicGame.Game.prototype = {
 		this.physics.p2.enable([this.goalRed,this.goalBlue], false); //change to true to see
         //set goal hit rectangles
         this.goalRed.body.static = true;
-        this.goalRed.body.setRectangle(0.75*this.goalRedImage.width,this.goalRedImage.height);
         this.goalBlue.body.static = true;
-        this.goalBlue.body.setRectangle(0.75*this.goalBlueImage.width,this.goalBlueImage.height);
+        if(this.game.mode==="portrait"){
+            this.goalRed.body.setRectangle(0.75*this.goalRedImage.width,this.goalRedImage.height);
+            this.goalBlue.body.setRectangle(0.75*this.goalBlueImage.width,this.goalBlueImage.height);
+        }else{
+            this.goalRed.body.setRectangle(this.goalRedImage.height,0.75*this.goalRedImage.width);
+            this.goalBlue.body.setRectangle(this.goalBlueImage.height,0.75*this.goalBlueImage.width);
+        }
 		
 	},
 
@@ -47,7 +52,7 @@ BasicGame.Game.prototype = {
         // var ends here
         
 		// Add puck to the center of the stage
-		this.puck = this.add.sprite(10, this.world.centerY,'puck');
+		this.puck = this.add.sprite(this.world.centerX, this.world.centerY,'puck');
 		// scale the puck here
         this.puck.width=puckSize; // old size this.world.width/9
         this.puck.height =puckSize; //this is 1/3 of the goal which is 1/3 of the width.
@@ -130,8 +135,8 @@ BasicGame.Game.prototype = {
 		this.input.addMoveCallback(this.paddleMove, this);
 		
 		// for eject puck timer
-		this.timerTxt = this.add.text(5, this.world.centerY, 'New Puck: 5', { font: "16px Arial", fill: "#3369E8", align: "center" });
-		//this.timerTxt.anchor.setTo(0.5, 0.5);
+		this.timerTxt = this.add.text(this.world.centerX, this.world.centerY + this.game.watermarkSize/2 + 10, 'New Puck: 5', { font: "16px Arial", fill: "#3369E8", align: "center" });
+		this.timerTxt.anchor.setTo(0.5, 0.5);
 		this.timerTxt.visible = false;
 		//this.timerTxt.angle = 90;
 		
@@ -139,22 +144,31 @@ BasicGame.Game.prototype = {
 		this.counter = 6;
 		this.scoreL = 0;
 		this.scoreR = 0;
-		this.styleScore = { font: "bold 20px Arial ", fill: "#fff", align: "center" };
-		
-//        var sideBar = this.add.sprite(0, this.world.centerY, 'sideBar');
-//        sideBar.anchor.setTo(.5, .5);
-//        sideBar.angle = 90;
-//        sideBar.width = this.world.height/5;
-//        sideBar.height = this.world.width/10;
-//        sideBar.x = this.world.width;
-//        sideBar.y = this.world.centerY;        
+		this.styleScore = { font: "bold 20px Arial ", fill: "#fff", align: "center" };   
         
-		this.scoreLtxt = this.add.text(this.world.width-20, this.world.centerY-25, '0', this.styleScore);
-		this.scoreLtxt.anchor.setTo(.5, .5);
-		this.scoreLtxt.angle = 90;
-		this.scoreRtxt = this.add.text(this.world.width-20, this.world.centerY+25, '0', this.styleScore);
+        this.scoreLtxt = this.add.text(0, 0, '0', this.styleScore);
+        this.scoreRtxt = this.add.text(0, 0, '0', this.styleScore);
+        this.scoreLtxt.anchor.setTo(.5, .5);
 		this.scoreRtxt.anchor.setTo(0.5, 0.5);
-		this.scoreRtxt.angle = 90;
+        
+        if(this.game.mode==="portrait"){
+            this.scoreLtxt.x = this.world.width-20;
+            this.scoreLtxt.y = this.world.centerY-25;
+            this.scoreRtxt.x = this.world.width-20;
+            this.scoreRtxt.y = this.world.centerY+25;
+            this.scoreLtxt.angle = 90;
+            this.scoreRtxt.angle = 90;
+        }else{//lanscape
+            this.scoreLtxt.x = this.world.centerX-25;
+            this.scoreLtxt.y = 18;
+            this.scoreRtxt.x = this.world.centerX+25;
+            this.scoreRtxt.y = 18;
+            //this.scoreLtxt.angle = 90;
+            //this.scoreRtxt.angle = 90;
+        }
+		
+
+		
         
         var mmBtn = this.add.button(0, 0, 'mainMenu', this.pauseGame, this);
         mmBtn.anchor.setTo(.5, .5);
@@ -163,16 +177,7 @@ BasicGame.Game.prototype = {
         mmBtn.x = this.world.width - 35; 
         mmBtn.y = 35; //this.world.centerY
         mmBtn.alpha = 0.85;
-        
-//        var sideBar2 = this.add.sprite(0, 0, 'sideBar');
-//        sideBar2.anchor.setTo(.5, .5);
-//        sideBar2.angle = -90;
-//        sideBar2.width = this.world.height/5;
-//        sideBar2.height = this.world.width/10;
-//        sideBar2.x = 0;
-//        sideBar2.y = this.world.centerY;  
-        //************************************************************
-        
+                
         
         // game menu work here ****************************************
         this.pauseMenu = this.game.add.group();
@@ -280,9 +285,9 @@ BasicGame.Game.prototype = {
 	},
 	ejectPuck: function(){
 		this.puck.body.y = this.world.centerY;
-		this.puck.body.x = 0;
+		this.puck.body.x = this.world.centerX;
 		this.puck.body.velocity.y = this.rnd.integerInRange(-70, 70);
-		this.puck.body.velocity.x = 75
+		this.puck.body.velocity.x = this.rnd.integerInRange(-70, 70);
 		this.puck.revive();
 	},
 	pauseGame: function(){

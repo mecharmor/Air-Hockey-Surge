@@ -11,6 +11,7 @@ function GenericLevel(me){
         watermarkSprite.x = me.world.centerX-watermarkSprite.width/2;
         watermarkSprite.y = me.world.centerY-watermarkSprite.height/2;
         watermarkSprite.alpha = 0.40;  //transparancy as a percentage
+        me.game.watermarkSize = watermarkSprite.height;
 
         //background to look like air hockey table
         me.add.tileSprite(0, 0, me.world.width, me.world.height, 'airhole');
@@ -65,6 +66,7 @@ function GenericLevel(me){
         watermarkSprite.x = me.world.centerX-watermarkSprite.width/2;
         watermarkSprite.y = me.world.centerY-watermarkSprite.height/2;
         watermarkSprite.alpha = 0.40;  //transparancy as a percentage
+        me.game.watermarkSize = watermarkSprite.height;
 
         //background to look like air hockey table
         me.add.tileSprite(0, 0, me.world.width, me.world.height, 'airhole');

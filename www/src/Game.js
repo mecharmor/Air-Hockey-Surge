@@ -254,7 +254,10 @@ BasicGame.Game.prototype = {
 	update: function(){
 		// 1 player activate ai
 		if(this.game.numPlayers == 1){
-			this.aiVer2();
+            if(this.game.mode==="portrait")
+			    this.verticalAI();
+            else
+                this.horizontalAI();
 		}
 	},
 	
@@ -377,7 +380,9 @@ BasicGame.Game.prototype = {
 		}
 	},
 	//*************************************
-	aiVer1: function(){
+    // this.computerHandle constraint line 131
+	verticalAI: function(){
+        console.log("vert")
 			var deltaY= this.puck.body.y-this.computerHandle.body.y;
 			if(deltaY>=0 && deltaY<70){
 				this.computerHandle.body.y = 100;  //thrust forward  
@@ -388,8 +393,11 @@ BasicGame.Game.prototype = {
 				
 			}
 	},
-	aiVer2: function()  {
-		this.aiVer1();
+	horizontalAI: function()  {
+        console.log("horiz")
+        this.computerHandle.body.x = 80; 
+        this.computerHandle.body.y=   this.puck.body.y;
+		//something
 	},
 	puckHit: function (body, bodyB, shapeA, shapeB, equation) {
 		//console.log(bodyB);

@@ -382,7 +382,7 @@ BasicGame.Game.prototype = {
 	//*************************************
     // this.computerHandle constraint line 131
 	verticalAI: function(){
-        console.log("vert")
+        
 			var deltaY= this.puck.body.y-this.computerHandle.body.y;
 			if(deltaY>=0 && deltaY<70){
 				this.computerHandle.body.y = 100;  //thrust forward  
@@ -394,10 +394,11 @@ BasicGame.Game.prototype = {
 			}
 	},
 	horizontalAI: function()  {
-        console.log("horiz")
+        // Two p2 physics sprites this.computerHandle and this.computer constained on line 131
+        // maybe just work with this.computer and give up on handle?
         this.computerHandle.body.x = 80; 
         this.computerHandle.body.y=   this.puck.body.y;
-		//something
+	
 	},
 	puckHit: function (body, bodyB, shapeA, shapeB, equation) {
 		//console.log(bodyB);

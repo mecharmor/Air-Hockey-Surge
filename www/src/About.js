@@ -87,7 +87,7 @@ BasicGame.About.prototype = {
         var specialStr = "***********************\n"+
                         "Special Thanks to:\n"+
                         "***********************\n";
-        var text5 = this.add.text(this.world.centerX, 1300, specialStr, devStyle);
+        var text5 = this.add.text(this.world.centerX, 1500, specialStr, devStyle);
         text5.x=this.world.centerX-text5.width*0.5;
                 
         var creditStyle = {
@@ -100,7 +100,9 @@ BasicGame.About.prototype = {
                         "Creative Commons Attribution license\n"+
                         "(https://creativecommons.org/licenses/by/4.0/)\n"+
                         "Artist: http://audionautix.com/\n"+
-                        "***********************\n";
+                        "***********************\n" + 
+                        "Funding for this project was provided by the College of the Sequoias SURGE program,\n" + 
+                        "which is funded by the US Department of Education MSEIP grant #P120A130106.";
         var credits = this.add.text(this.world.centerX, 1200, creditStr, creditStyle);
         credits.x=this.world.centerX-credits.width*0.5;
 

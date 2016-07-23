@@ -86,7 +86,7 @@ function GenericLevel(me){
         graphics.moveTo(me.world.height/5, me.world.centerY); //done
         graphics.lineTo(me.world.width/2 -me.world.width/6, me.world.centerY); 
         graphics.moveTo(me.world.width/2 +me.world.width/6, me.world.centerY);
-        graphics.lineTo(me.world.width, me.world.centerY);
+        graphics.lineTo(me.world.width-me.world.height/5, me.world.centerY); //done
 
         //Draw circles
         graphics.drawCircle(me.world.centerX, me.world.centerY, me.world.width/3);

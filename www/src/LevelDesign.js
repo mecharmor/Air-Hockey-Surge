@@ -77,7 +77,7 @@ function GenericLevel(me){
         graphics.lineStyle(4, 0xff7332, 0.5);
 
         //draw centerline top to bottom
-        graphics.moveTo(me.world.centerX,me.world.width/5); //top line
+        graphics.moveTo(me.world.centerX, 0); //top line
         graphics.lineTo(me.world.centerX, me.world.centerY-me.world.width/6); 
         graphics.moveTo(me.world.centerX, me.world.centerY+me.world.width/6);
         graphics.lineTo(me.world.centerX, me.world.height-me.world.width/5); //bottom line

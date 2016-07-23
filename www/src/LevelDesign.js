@@ -5,6 +5,8 @@ function GenericLevel(me){
     
     if(me.game.mode==="portrait"){
         var Watermark = me.cache.getImage('Watermark');
+        var goalCircleD = me.world.width*2/5; //to change the diameter of the circles
+        var centerCircleD = me.world.width/3;
         watermarkSprite = me.add.sprite(0, 0, 'Watermark');
         watermarkSprite.width = me.world.width/3.2;
         watermarkSprite.height = me.world.width/(3.2*2);  // to keep aspect ratio 2:1
@@ -22,21 +24,21 @@ function GenericLevel(me){
         graphics.lineStyle(4, 0xff7332, 0.5);
 
         //draw centerline top to bottom
-        graphics.moveTo(me.world.centerX,me.world.width/5); //top line
-        graphics.lineTo(me.world.centerX, me.world.centerY-me.world.width/6); 
-        graphics.moveTo(me.world.centerX, me.world.centerY+me.world.width/6);
-        graphics.lineTo(me.world.centerX, me.world.height-me.world.width/5); //bottom line
+        graphics.moveTo(me.world.centerX, goalCircleD/2); //top line
+        graphics.lineTo(me.world.centerX, me.world.centerY-centerCircleD/2); 
+        graphics.moveTo(me.world.centerX, me.world.centerY+centerCircleD/2);
+        graphics.lineTo(me.world.centerX, me.world.height-goalCircleD/2); //bottom line
 
         //centerlines left to right
         graphics.moveTo(0, me.world.centerY);
-        graphics.lineTo(me.world.width/2 -me.world.width/6, me.world.centerY); 
-        graphics.moveTo(me.world.width/2 +me.world.width/6, me.world.centerY);
+        graphics.lineTo(me.world.width/2 -centerCircleD/2, me.world.centerY); 
+        graphics.moveTo(me.world.width/2 +centerCircleD/2, me.world.centerY);
         graphics.lineTo(me.world.width, me.world.centerY);
 
         //Draw circles
-        graphics.drawCircle(me.world.centerX, me.world.centerY, me.world.width/3);
-        graphics.drawCircle(me.world.centerX, 0, me.world.width*2/5);
-        graphics.drawCircle(me.world.centerX, me.world.height, me.world.width*2/5);
+        graphics.drawCircle(me.world.centerX, me.world.centerY, centerCircleD);
+        graphics.drawCircle(me.world.centerX, 0, goalCircleD);
+        graphics.drawCircle(me.world.centerX, me.world.height, goalCircleD);
 
         //draw score boxes
         graphics.lineStyle(0);
@@ -60,6 +62,8 @@ function GenericLevel(me){
         me.goalBlueImage.alpha=0.5;
     }else{
         var Watermark = me.cache.getImage('Watermark');
+        var goalCircleD = me.world.height*2/5; //to change the diameter of the circles
+        var centerCircleD = me.world.width/3;
         watermarkSprite = me.add.sprite(0, 0, 'Watermark');
         watermarkSprite.width = me.world.width/3.2;
         watermarkSprite.height = me.world.width/(3.2*2);  // to keep aspect ratio 2:1
@@ -78,20 +82,20 @@ function GenericLevel(me){
 
         //draw centerline top to bottom
         graphics.moveTo(me.world.centerX, 0); //top line done
-        graphics.lineTo(me.world.centerX, me.world.centerY-me.world.width/6); 
-        graphics.moveTo(me.world.centerX, me.world.centerY+me.world.width/6);
+        graphics.lineTo(me.world.centerX, me.world.centerY-centerCircleD/2); 
+        graphics.moveTo(me.world.centerX, me.world.centerY+centerCircleD/2);
         graphics.lineTo(me.world.centerX, me.world.height+me.world.width/5); //bottom line
 
         //centerlines left to right
-        graphics.moveTo(me.world.height/5, me.world.centerY); //done
-        graphics.lineTo(me.world.width/2 -me.world.width/6, me.world.centerY); 
-        graphics.moveTo(me.world.width/2 +me.world.width/6, me.world.centerY);
-        graphics.lineTo(me.world.width-me.world.height/5, me.world.centerY); //done
+        graphics.moveTo(goalCircleD/2, me.world.centerY); //done
+        graphics.lineTo(me.world.width/2 -centerCircleD/2, me.world.centerY); 
+        graphics.moveTo(me.world.width/2 +centerCircleD/2, me.world.centerY);
+        graphics.lineTo(me.world.width-goalCircleD/2, me.world.centerY); //done
 
         //Draw circles
-        graphics.drawCircle(me.world.centerX, me.world.centerY, me.world.width/3);
-        graphics.drawCircle(0, me.world.centerY, me.world.height*2/5);
-        graphics.drawCircle(me.world.width, me.world.centerY, me.world.height*2/5);
+        graphics.drawCircle(me.world.centerX, me.world.centerY, centerCircleD);
+        graphics.drawCircle(0, me.world.centerY, goalCircleD);
+        graphics.drawCircle(me.world.width, me.world.centerY, goalCircleD);
 
         //draw score boxes
         graphics.lineStyle(0);

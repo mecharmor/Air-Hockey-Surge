@@ -83,7 +83,7 @@ function GenericLevel(me){
         graphics.lineTo(me.world.centerX, me.world.height-me.world.width/5); //bottom line
 
         //centerlines left to right
-        graphics.moveTo(0, me.world.centerY);
+        graphics.moveTo(me.world.height/5, me.world.centerY); //done
         graphics.lineTo(me.world.width/2 -me.world.width/6, me.world.centerY); 
         graphics.moveTo(me.world.width/2 +me.world.width/6, me.world.centerY);
         graphics.lineTo(me.world.width, me.world.centerY);

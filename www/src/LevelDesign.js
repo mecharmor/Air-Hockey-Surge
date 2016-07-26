@@ -43,7 +43,7 @@ function GenericLevel(me){
         //draw score boxes
         graphics.lineStyle(0);
         graphics.beginFill(0x000);
-        graphics.drawRect(me.world.width-30,me.world.centerY-40,30,30);
+        graphics.drawRect(me.world.width-30,me.world.centerY-40,30,60);
         graphics.drawRect(me.world.width-30,me.world.centerY+10,30,30);
 
         me.goalRedImage = me.add.sprite(0,0,'goalRed');
@@ -100,7 +100,7 @@ function GenericLevel(me){
         //draw score boxes
         graphics.lineStyle(0);
         graphics.beginFill(0x000);
-        graphics.drawRect(me.world.centerX-40,0,30,30);
+        graphics.drawRect(me.world.centerX-40,0,60,30);
         graphics.drawRect(me.world.centerX+10,0,30,30);
 
         me.goalRedImage = me.add.sprite(0,0,'goalRed');

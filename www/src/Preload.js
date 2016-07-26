@@ -67,7 +67,7 @@ BasicGame.Preloader.prototype = {
 		{
             //set global background music here
             BasicGame.backgroundMusic = this.add.audio('gameMusic');
-            BasicGame.backgroundMusic.volume = 0.3;
+            BasicGame.backgroundMusic.volume = 0.75;
             BasicGame.backgroundMusic.loop = true;
             BasicGame.backgroundMusic.play();
             //BasicGame.backgroundMusic.stop();

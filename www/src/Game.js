@@ -185,11 +185,18 @@ BasicGame.Game.prototype = {
         
         var mmBtn = this.add.button(0, 0, 'mainMenu', this.pauseGame, this);
         mmBtn.anchor.setTo(.5, .5);
-        mmBtn.width = this.world.width/20;
-        mmBtn.height = mmBtn.width;
-        mmBtn.x = this.world.width - 35; 
-        mmBtn.y = 35; //this.world.centerY
-        mmBtn.alpha = 0.85;
+        mmBtn.width = 30;
+        mmBtn.height = 30;
+        if(this.game.mode==="portrait"){
+            mmBtn.x = this.world.width - 15; 
+            mmBtn.y = this.world.centerY;
+            mmBtn.alpha = 1;
+        }else{
+            mmBtn.x = this.world.centerX; 
+            mmBtn.y = 15;
+            mmBtn.alpha = 1;            
+        };
+
                 
         
         // game menu work here ****************************************

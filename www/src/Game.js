@@ -412,8 +412,50 @@ BasicGame.Game.prototype = {
 	horizontalAI: function()  {
         // Two p2 physics sprites this.computerHandle and this.computer constained on line 131
         // maybe just work with this.computer and give up on handle?
-        this.computerHandle.body.x = 80; 
-        this.computerHandle.body.y=   this.puck.body.y;
+        //var lag = this.rnd.integerInRange(0, 40);
+        var initX = this.computer.width/2 + this.goalRed.width;
+        var lag = this.puck.height/1.5;
+        
+        var distance = Math.sqrt( Math.pow(this.puck.body.x-this.computerHandle.body.x,2) +Math.pow(this.puck.body.y-this.computerHandle.body.y,2)  );
+        
+        var aiYmin = this.puck.height;
+        var aiYmax = this.world.height - aiYmin;
+        var aiYvalue;
+        if(this.puck.body.velocity.y>0){
+            aiYvalue = this.puck.body.y - lag;
+        }else {
+            aiYvalue = this.puck.body.y + lag;
+        }
+        
+        if(aiYvalue>aiYmin && aiYvalue<aiYmax && this.computerHandle.body.x<this.world.centerX){
+            
+            if(distance<100){ //thrust
+                this.computerHandle.body.x=this.puck.body.x;
+                this.computerHandle.body.y=this.puck.body.y;
+               
+            }else{
+                this.computerHandle.body.y = aiYvalue;
+                this.computerHandle.body.x = initX;
+            }
+            
+            
+        }else{
+            if(this.computerHandle.body.y<this.world.centerY){
+                this.computerHandle.body.x = initX;
+                this.computerHandle.body.y = aiYmin+this.puck.height/2;
+            }else{
+                this.computerHandle.body.x = initX;
+                this.computerHandle.body.y = aiYmax-this.puck.height/2;
+            }
+            
+        }
+                
+        //thrust
+
+            
+        
+        
+
 	
 	},
 	puckHit: function (body, bodyB, shapeA, shapeB, equation) {

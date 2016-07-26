@@ -356,7 +356,7 @@ BasicGame.Game.prototype = {
 
 	   if (bodies.length != 0){
 			pointer.handle = this.add.sprite(pointer.x, pointer.y);
-			this.physics.p2.enable(pointer.handle,false);
+			this.physics.p2.enable(pointer.handle,true);
 			pointer.handle.body.setCircle(5);
 			pointer.handle.anchor.setTo(0.5, 0.5);
 			pointer.handle.body.static = true;
@@ -365,8 +365,9 @@ BasicGame.Game.prototype = {
 		   //basically the pointer gets reference to new handle sprite, paddle and paddle spring
 		   //not sure this is the best thing to do but it's for multitouch.
 		   pointer.paddle = bodies[0].parent.sprite;  //paddle sprite clicked gets pointer object
+           //if(pointer.paddle===this.puck) console.log("got it")
 		   //Docs.... createLockConstraint(bodyA, bodyB, offset, angle, maxForce) 
-		   pointer.paddleSpring = this.physics.p2.createLockConstraint(pointer.handle, bodies[0].parent.sprite );
+		   pointer.paddleSpring = this.physics.p2.createLockConstraint(pointer.handle, pointer.paddle );
 		   //console.log("hello" + bodies.length);
 	   }
 		
@@ -374,9 +375,16 @@ BasicGame.Game.prototype = {
 	paddleMove: function(pointer, x, y, isDown) {
 		//at this point the spring is attached
 		if(pointer.paddle){
-			//TODO: Keep paddle on table.
-			pointer.handle.body.x = x;
-			pointer.handle.body.y = y;
+            // take care of puck drag into goal here
+            if(pointer.paddle.alive){
+                //TODO: Keep paddle on table.
+                pointer.handle.body.x = x;
+                pointer.handle.body.y = y;
+                
+            }else{
+                this.paddleDrop(pointer);
+            }
+			
 		}
 	}, 
 	paddleDrop: function(pointer){
@@ -410,7 +418,7 @@ BasicGame.Game.prototype = {
 	puckHit: function (body, bodyB, shapeA, shapeB, equation) {
 		//console.log(bodyB);
 		// if goal width is changed this will not work
-		if(shapeB.width!=5)
+		//if(shapeB.width!=5)
 			this.puckClack.play();
 	}
 

@@ -259,6 +259,7 @@ BasicGame.Game.prototype = {
         //******************************************************************
 	},
 	update: function(){
+        this.constrainVelocity(this.puck, 50);
 		// 1 player activate ai
 		if(this.game.numPlayers == 1){
             if(this.game.mode==="portrait")
@@ -356,7 +357,7 @@ BasicGame.Game.prototype = {
 
 	   if (bodies.length != 0){
 			pointer.handle = this.add.sprite(pointer.x, pointer.y);
-			this.physics.p2.enable(pointer.handle,true);
+			this.physics.p2.enable(pointer.handle,false);
 			pointer.handle.body.setCircle(5);
 			pointer.handle.anchor.setTo(0.5, 0.5);
             //pointer.handle.body.dynamic = false;
@@ -399,15 +400,35 @@ BasicGame.Game.prototype = {
     // this.computerHandle constraint line 131
 	verticalAI: function(){
         
-			var deltaY= this.puck.body.y-this.computerHandle.body.y;
-			if(deltaY>=0 && deltaY<70){
-				this.computerHandle.body.y = 100;  //thrust forward  
-				this.computerHandle.body.x = this.puck.body.x;
-			}else {
-				this.computerHandle.body.y = 50;  //thrust back
-				this.computerHandle.body.x =   this.puck.body.x;
-				
-			}
+        var initY = this.computer.height/2 + this.goalRed.width;
+        var lag = this.puck.width/1.5;
+        var distance = Math.sqrt( Math.pow(this.puck.body.x-this.computerHandle.body.x,2) +Math.pow(this.puck.body.y-this.computerHandle.body.y,2)  );
+        
+        var aiXmin = this.computer.width/1.5+10;
+        var aiXmax = this.world.width - aiXmin;
+        var aiXvalue;
+        if(this.puck.body.velocity.x>0){
+            aiXvalue = this.puck.body.x - lag;
+        }else {
+            aiXvalue = this.puck.body.x + lag;
+        }
+        
+        this.computerHandle.body.x = aiXvalue;
+        this.computerHandle.body.y = initY;
+        
+        //lunge
+        if(distance<aiXmin && Math.abs(this.puck.body.velocity.y)<700){
+            
+            this.computerHandle.body.x = this.puck.body.x-10;
+            this.computerHandle.body.y =this.puck.body.y-10;
+            
+            if(this.computerHandle.body.y>this.game.height/3){
+                this.computerHandle.body.y = initY;
+            }
+
+        }
+
+        
 	},
 	horizontalAI: function()  {
         // Two p2 physics sprites this.computerHandle and this.computer constained on line 131
@@ -426,42 +447,47 @@ BasicGame.Game.prototype = {
         }else {
             aiYvalue = this.puck.body.y + lag;
         }
-        
-        if(aiYvalue>aiYmin && aiYvalue<aiYmax && this.computerHandle.body.x<this.world.centerX){
-            
-            if(distance<100){ //thrust
-                this.computerHandle.body.x=this.puck.body.x;
-                this.computerHandle.body.y=this.puck.body.y;
                
-            }else{
-                this.computerHandle.body.y = aiYvalue;
-                this.computerHandle.body.x = initX;
-            }
-            
-            
-        }else{
-            if(this.computerHandle.body.y<this.world.centerY){
-                this.computerHandle.body.x = initX;
-                this.computerHandle.body.y = aiYmin+this.puck.height/2;
-            }else{
-                this.computerHandle.body.x = initX;
-                this.computerHandle.body.y = aiYmax-this.puck.height/2;
-            }
-            
-        }
+        this.computerHandle.body.y = aiYvalue;
+        this.computerHandle.body.x = initX;
+
                 
-        //thrust
-
+        //lunge
+        if(distance<aiYmin && Math.abs(this.puck.body.velocity.x)<500){
             
-        
-        
+            this.computerHandle.body.x = this.puck.body.x-10;
+            this.computerHandle.body.y =this.puck.body.y-10;
+            
+            if(this.computerHandle.body.x>this.game.width/3){
+                this.computerHandle.body.x = initX;
+            }
 
-	
+        }
+
 	},
 	puckHit: function (body, bodyB, shapeA, shapeB, equation) {
 		// if pointer.handle width is changed this will not work
 		if(shapeB.radius!=0.25)
 			this.puckClack.play();
-	}
+	},
+    constrainVelocity: function(sprite, maxVelocity){
+        
+        var body = sprite.body;
+        var angle, currVelocitySqr, vx, vy;  
+        vx = body.data.velocity[0];  
+        vy = body.data.velocity[1];  
+        currVelocitySqr = vx * vx + vy * vy;  
+        if (currVelocitySqr > maxVelocity * maxVelocity) {    
+            angle = Math.atan2(vy, vx);    
+            vx = Math.cos(angle) * maxVelocity;    
+            vy = Math.sin(angle) * maxVelocity;   
+            body.data.velocity[0] = vx;    
+            body.data.velocity[1] = vy;    
+            //console.log('limited speed to: '+maxVelocity);  
+        }
+          
+        
+    }
+
 
 };

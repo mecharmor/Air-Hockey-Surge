@@ -9,6 +9,8 @@ BasicGame = {
     music: true, //start with music on
     numPlayers: 1,
     btnWidth: 0,
+    isPortrait: true,
+    difficulty: 50, // speed of puck 50, 75, 100??
     
 };
 
@@ -34,10 +36,12 @@ BasicGame.Boot.prototype = {
         
         // global button width
         this.game.btnWidth = this.world.width/3;
-        if(this.game.btnWidth>300) this.game.btnWidth=300;
-        if(this.game.btnWidth<200) this.game.btnWidth=200; //min-value
+        if(this.game.btnWidth>300) this.game.btnWidth=350;
+        if(this.game.btnWidth<200) this.game.btnWidth=250; //min-value
         
         this.stage.backgroundColor = '#fff';
+        
+        if(this.world.width>this.world.height) BasicGame.isPortrait=false;
         
 
 //        if (this.game.device.desktop)
@@ -65,6 +69,7 @@ BasicGame.Boot.prototype = {
        
         this.load.image('preloaderBackground', 'asset/AirHockeySplashscreen.png');
         this.load.image('preloaderBar', 'asset/preloader-bar.png');
+        this.load.image('gameMenuBackground', 'asset/gameMenu-background.png');
 
     },
 
@@ -75,8 +80,8 @@ BasicGame.Boot.prototype = {
     },
 
     gameResized: function (width, height) {
-        
-
+        //console.log('resized')
+       
         //  This could be handy if you need to do any extra processing if the game resizes.
         //  A resize could happen if for example swapping orientation on a device or resizing the browser window.
         //  Note that this callback is only really useful if you use a ScaleMode of RESIZE and place it inside your main game state.
@@ -84,20 +89,20 @@ BasicGame.Boot.prototype = {
 
     },
 
-    enterIncorrectOrientation: function () {
-
-        BasicGame.orientated = false;
-
-        document.getElementById('orientation').style.display = 'block';
-
-    },
-
-    leaveIncorrectOrientation: function () {
-
-        BasicGame.orientated = true;
-
-        document.getElementById('orientation').style.display = 'none';
-
-    }
+//    enterIncorrectOrientation: function () {
+//
+//        BasicGame.orientated = false;
+//
+//        document.getElementById('orientation').style.display = 'block';
+//
+//    },
+//
+//    leaveIncorrectOrientation: function () {
+//
+//        BasicGame.orientated = true;
+//
+//        document.getElementById('orientation').style.display = 'none';
+//
+//    }
 
 };

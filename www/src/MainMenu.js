@@ -7,10 +7,8 @@ BasicGame.MainMenu.prototype = {
 
     
     init: function() {
-        
+                
         this.world.alpha = 1;
-        this.game.mode = "portrait";
-        if(this.world.height<this.world.width) this.game.mode="landscape";
 
         //draw board in LevelDesign.js
         GenericLevel(this);

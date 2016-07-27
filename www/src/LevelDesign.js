@@ -3,7 +3,8 @@
 //pass 'this' to the level design functions so you can paint to the screen.
 function GenericLevel(me){
     
-    if(me.game.mode==="portrait"){
+    
+    if(BasicGame.isPortrait){
         var Watermark = me.cache.getImage('Watermark');
         var goalCircleD = me.world.width*2/5; //to change the diameter of the circles
         var centerCircleD = me.world.width/3;

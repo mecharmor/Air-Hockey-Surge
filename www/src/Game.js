@@ -26,7 +26,7 @@ BasicGame.Game.prototype = {
         //set goal hit rectangles
         this.goalRed.body.static = true;
         this.goalBlue.body.static = true;
-        if(this.game.mode==="portrait"){
+        if(BasicGame.isPortrait){
             this.goalRed.body.setRectangle(0.75*this.goalRedImage.width,this.goalRedImage.height);
             this.goalBlue.body.setRectangle(0.75*this.goalBlueImage.width,this.goalBlueImage.height);
         }else{
@@ -67,7 +67,7 @@ BasicGame.Game.prototype = {
 			//one player setup with two paddles one named
             this.computer = this.paddles.create(0, 0,'paddleR');
             var player = this.paddles.create(0, 0,'paddleB');
-            if(this.game.mode==="portrait"){
+            if(BasicGame.isPortrait){
                 this.computer.x=this.world.centerX;
                 this.computer.y=this.world.height/3;
                 player.x=this.world.centerX;
@@ -80,7 +80,7 @@ BasicGame.Game.prototype = {
             }
 		
 		}else{
-            if(this.game.mode==="portrait"){
+            if(BasicGame.isPortrait){
                 for(i=0; i<this.game.numPlayers; i++){
                     if(i%2 == 0)
                         this.paddles.create(100*i + this.world.width/3, this.world.height/6  ,'paddleR');
@@ -116,19 +116,17 @@ BasicGame.Game.prototype = {
 		//Physics for one player
 		if(this.game.numPlayers == 1){
 			this.computerHandle = this.add.sprite(10, 10);
+            this.computerHandle.anchor.setTo(0.5, 0.5);
 			this.physics.p2.enable(this.computerHandle,false); //true for view
-			
 			this.computerHandle.body.setCircle(5);
-			this.computerHandle.anchor.setTo(0.5, 0.5);
-			
 			this.computerHandle.body.x = this.world.centerX;
 			this.computerHandle.body.y = 40;
 			
-			this.computer.anchor.setTo(0.5, 0.5);
+			this.computer.anchor.setTo(0.5, 0.5); //computer paddle
 			this.computer.body.x = 70;
 
-			var force = 250; //change this for difficulty levels
-			this.physics.p2.createLockConstraint(this.computerHandle, this.computer,[1,1],force );
+			//constrain new computer handle to paddle
+			this.physics.p2.createLockConstraint(this.computerHandle, this.computer );
 			//in game move this.computeHandle for realistic play
 			this.computerHandle.body.static = true;
 		}
@@ -148,7 +146,7 @@ BasicGame.Game.prototype = {
 		this.input.addMoveCallback(this.paddleMove, this);
 		
 		// for eject puck timer
-		this.timerTxt = this.add.text(this.world.centerX, this.world.centerY + this.game.watermarkSize/2 + 10, 'New Puck: 5', { font: "16px Arial", fill: "#3369E8", align: "center" });
+		this.timerTxt = this.add.text(this.world.centerX, this.world.centerY + this.game.watermarkSize/2 + 10, 'New Puck: 5', { font: "20px Arial", fill: "#3369E8", align: "center" });
 		this.timerTxt.anchor.setTo(0.5, 0.5);
 		this.timerTxt.visible = false;
 		//this.timerTxt.angle = 90;
@@ -164,7 +162,7 @@ BasicGame.Game.prototype = {
         this.scoreLtxt.anchor.setTo(.5, .5);
 		this.scoreRtxt.anchor.setTo(0.5, 0.5);
         
-        if(this.game.mode==="portrait"){
+        if(BasicGame.isPortrait){
             this.scoreLtxt.x = this.world.width-20;
             this.scoreLtxt.y = this.world.centerY-25;
             this.scoreRtxt.x = this.world.width-20;
@@ -180,17 +178,15 @@ BasicGame.Game.prototype = {
             //this.scoreRtxt.angle = 90;
         }
 		
-
-		
-        
         var mmBtn = this.add.button(0, 0, 'mainMenu', this.pauseGame, this);
         mmBtn.anchor.setTo(.5, .5);
         mmBtn.width = 30;
         mmBtn.height = 30;
-        if(this.game.mode==="portrait"){
+        if(BasicGame.isPortrait){
             mmBtn.x = this.world.width - 15; 
             mmBtn.y = this.world.centerY;
             mmBtn.alpha = 1;
+            mmBtn.angle = 90;
         }else{
             mmBtn.x = this.world.centerX; 
             mmBtn.y = 15;
@@ -259,10 +255,10 @@ BasicGame.Game.prototype = {
         //******************************************************************
 	},
 	update: function(){
-        this.constrainVelocity(this.puck, 50);
+        this.constrainVelocity(this.puck, BasicGame.difficulty);
 		// 1 player activate ai
 		if(this.game.numPlayers == 1){
-            if(this.game.mode==="portrait")
+            if(BasicGame.isPortrait)
 			    this.verticalAI();
             else
                 this.horizontalAI();
@@ -310,15 +306,14 @@ BasicGame.Game.prototype = {
 	ejectPuck: function(){
 		this.puck.body.y = this.world.centerY;
 		this.puck.body.x = this.world.centerX;
-		this.puck.body.velocity.y = this.rnd.integerInRange(-70, 70);
-		this.puck.body.velocity.x = this.rnd.integerInRange(-70, 70);
+		this.puck.body.velocity.y = this.rnd.integerInRange(-100, 100);
+		this.puck.body.velocity.x = this.rnd.integerInRange(-100, 100);
 		this.puck.revive();
 	},
 	pauseGame: function(){
         this.game.paused = true;
         this.pauseMenu.visible = true;
         this.input.onDown.add(this.unpauseGame, this);
-		//this.state.start('MainMenu');
 	},
 	unpauseGame: function(){
         if (this.game.paused) {
@@ -357,10 +352,9 @@ BasicGame.Game.prototype = {
 
 	   if (bodies.length != 0){
 			pointer.handle = this.add.sprite(pointer.x, pointer.y);
+            pointer.handle.anchor.setTo(0.5, 0.5);
 			this.physics.p2.enable(pointer.handle,false);
 			pointer.handle.body.setCircle(5);
-			pointer.handle.anchor.setTo(0.5, 0.5);
-            //pointer.handle.body.dynamic = false;
 			pointer.handle.body.static = true;
 			//pointer.handle.body.collideWorldBounds = true;
 		   
@@ -370,12 +364,11 @@ BasicGame.Game.prototype = {
            //if(pointer.paddle===this.puck) console.log("got it")
 		   //Docs.... createLockConstraint(bodyA, bodyB, offset, angle, maxForce) 
 		   pointer.paddleSpring = this.physics.p2.createLockConstraint(pointer.handle, pointer.paddle);
-		   //console.log("hello" + bodies.length);
 	   }
 		
 	},
 	paddleMove: function(pointer, x, y, isDown) {
-		//at this point the spring is attached
+		//at this point there is a constraint
 		if(pointer.paddle){
             // take care of puck drag into goal here
             if(pointer.paddle.alive){
@@ -397,7 +390,7 @@ BasicGame.Game.prototype = {
 		}
 	},
 	//*************************************
-    // this.computerHandle constraint line 131
+    // this.computerHandle constraint line 129
 	verticalAI: function(){
         
         var initY = this.computer.height/2 + this.goalRed.width;
@@ -416,7 +409,7 @@ BasicGame.Game.prototype = {
         this.computerHandle.body.x = aiXvalue;
         this.computerHandle.body.y = initY;
         
-        //lunge
+        //lunge  (if the puck is fast it will not lunge)
         if(distance<aiXmin && Math.abs(this.puck.body.velocity.y)<700){
             
             this.computerHandle.body.x = this.puck.body.x-10;
@@ -451,8 +444,7 @@ BasicGame.Game.prototype = {
         this.computerHandle.body.y = aiYvalue;
         this.computerHandle.body.x = initX;
 
-                
-        //lunge
+        //lunge (if the puck is fast it will not lunge)
         if(distance<aiYmin && Math.abs(this.puck.body.velocity.x)<500){
             
             this.computerHandle.body.x = this.puck.body.x-10;

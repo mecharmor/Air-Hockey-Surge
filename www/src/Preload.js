@@ -9,6 +9,13 @@ BasicGame.Preloader = function (game) {
 BasicGame.Preloader.prototype = {
 
 	preload: function () {
+        
+        //lights out on board?
+        this.mnuBackground = this.add.sprite(0,0,'gameMenuBackground');
+        this.mnuBackground.width = this.world.width;
+        this.mnuBackground.height = this.world.height;
+        this.mnuBackground.alpha = 0.75;
+        // end lights out
 
 		//	These are the assets we loaded in Boot.js
         var splash = this.cache.getImage('preloaderBackground');
@@ -39,7 +46,7 @@ BasicGame.Preloader.prototype = {
         this.load.image('settingsBtn', 'asset/gameMenu-setttings.png')
         
         this.load.image('gameContinueBtn', 'asset/gameMenu-continue.png');
-        this.load.image('gameMenuBackground', 'asset/gameMenu-background.png');
+        //this.load.image('gameMenuBackground', 'asset/gameMenu-background.png');
         this.load.image('gameMenuQuitBtn', 'asset/gameMenu-quit.png');
         
         // spritesheets are loading in with frame rectangles and number of frames

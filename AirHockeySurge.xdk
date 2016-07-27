@@ -5,7 +5,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.webapp",
       "src": "webapp/template-blank/sample.zip",
       "projectGuid": "2e6f225f-6691-4bbc-9814-7feaea9b2c1b",
-      "lastModifiedDate": 1466791655020,
+      "lastModifiedDate": 1469580584635,
       "creationDate": 1461975999462
     },
     "XDK-app-designer": "false",
@@ -32,9 +32,11 @@
         "name_": "iOS",
         "preferences_": {
           "ios-configuration": "adhoc",
-          "deployment-target": "8.0"
+          "deployment-target": "8.0",
+          "Fullscreen": true,
+          "Orientation": "portrait"
         },
-        "isActive_": true,
+        "isActive_": false,
         "appName_": "AirHockeySurge",
         "appID_": "xdk.intel.blank.template",
         "appAccess_": {
@@ -53,8 +55,8 @@
         "cordovaCLIVersion_": "5.4.1",
         "crosswalkVersion_": "16",
         "appVersion_": "0.0.1",
-        "appAuthor_": "Intel XDK",
-        "appDescription_": "Use this template to start with a simple index.html file for creating mobile web apps."
+        "appAuthor_": "John Redden and Gang",
+        "appDescription_": "Free air hockey app developed at COS."
       },
       "Windows8": {
         "platform_": "windows8",
@@ -64,7 +66,7 @@
           "windows-publisher-display-name": "",
           "windows-publisher-id": ""
         },
-        "isActive_": true,
+        "isActive_": false,
         "appName_": "AirHockeySurge",
         "appID_": "xdk.intel.blank.template",
         "appAccess_": {
@@ -216,7 +218,9 @@
           "android-minSdkVersion": "14",
           "android-targetSdkVersion": "21",
           "android-installLocation": "auto",
-          "android-signed": true
+          "android-signed": true,
+          "Fullscreen": true,
+          "Orientation": "portrait"
         },
         "isActive_": true,
         "appName_": "AirHockeySurge",
@@ -237,8 +241,8 @@
         "cordovaCLIVersion_": "5.4.1",
         "crosswalkVersion_": "16",
         "appVersion_": "0.0.1",
-        "appAuthor_": "Intel XDK",
-        "appDescription_": "Use this template to start with a simple index.html file for creating mobile web apps.",
+        "appAuthor_": "John Redden and Gang",
+        "appDescription_": "Classic air hockey table game play.",
         "appVersionCode_": "1"
       }
     },

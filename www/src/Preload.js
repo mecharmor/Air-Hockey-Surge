@@ -26,8 +26,8 @@ BasicGame.Preloader.prototype = {
 		//	Here we load the rest of the assets our game needs.
         this.load.image('Watermark', 'asset/AirHockeyWatermark.png')
         this.load.image('puck', 'asset/Surge_Puck.png');
-        this.load.image('paddleR', 'asset/air_hockey_photoshop/Normal/RedPuck_ooohShiny.png');//newPaddle.png');
-        this.load.image('paddleB', 'asset/air_hockey_photoshop/Normal/BluePuck_ooohShiny.png');//newPaddleBlue.png');
+        this.load.image('paddleR', 'asset/RedPuck_ooohShiny.png');//newPaddle.png');
+        this.load.image('paddleB', 'asset/BluePuck_ooohShiny.png');//newPaddleBlue.png');
         this.load.image('goalBlue', 'asset/Goal_blue.png');
         this.load.image('goalRed', 'asset/Goal_red.png');
         this.load.image('airhole', 'asset/hole4.png');

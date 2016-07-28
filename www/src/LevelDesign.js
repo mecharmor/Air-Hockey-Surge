@@ -123,3 +123,13 @@ function GenericLevel(me){
         me.goalBlueImage.angle=-90;
     }
 };
+
+function createButton(btn, pos, fun, me){
+    var mybtn = me.add.button(0,0,btn, fun, me);
+    mybtn.width = me.game.btnWidth;
+    mybtn.height = me.game.btnWidth/5;
+    mybtn.anchor.setTo(0.5,0.5);
+    mybtn.x = me.world.centerX;
+    mybtn.y = 233 + pos * mybtn.height
+    
+};

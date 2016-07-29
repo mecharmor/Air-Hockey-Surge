@@ -257,7 +257,7 @@ BasicGame.Game.prototype = {
 	update: function(){
         this.constrainVelocity(this.puck, BasicGame.difficulty);
 		// 1 player activate ai
-		if(this.game.numPlayers == 1){
+		if(BasicGame.isOnePlayer){
             if(BasicGame.isPortrait)
 			    this.verticalAI();
             else

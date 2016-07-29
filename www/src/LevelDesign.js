@@ -133,3 +133,20 @@ function createButton(btn, pos, fun, me){
     mybtn.y = 233 + pos * mybtn.height
     
 };
+
+function lightsOut(me){
+            //lights out on board?
+        me.mnuBackground = me.add.sprite(0,0,'gameMenuBackground');
+        me.mnuBackground.width = me.world.width;
+        me.mnuBackground.height = me.world.height;
+        me.mnuBackground.alpha = 0.75;
+        // end lights out
+};
+
+function placeLogo(me){
+            // Air Hockey Logo at top
+        var splash = me.cache.getImage('preloaderBackground');
+        me.splashSprite = me.add.sprite(0,0,'preloaderBackground');
+        me.splashSprite.x=me.world.centerX - splash.width/2;
+        me.splashSprite.y=0;
+}

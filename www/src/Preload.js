@@ -10,21 +10,11 @@ BasicGame.Preloader.prototype = {
 
 	preload: function () {
         
-        //lights out on board?
-        this.mnuBackground = this.add.sprite(0,0,'gameMenuBackground');
-        this.mnuBackground.width = this.world.width;
-        this.mnuBackground.height = this.world.height;
-        this.mnuBackground.alpha = 0.75;
-        // end lights out
-
-		//	These are the assets we loaded in Boot.js
-        var splash = this.cache.getImage('preloaderBackground');
+        lightsOut(this);
+        placeLogo(this);
+        
         var bar = this.cache.getImage('preloaderBar');
-        // placing splash background as a sprite in the middle of the page 50 px from top
-        this.splashGraphic = this.add.sprite(this.world.centerX-splash.width/2.0, 20, 'preloaderBackground');
-		//adding the preloader bar as sprite in the middle 200 px from top
 		this.preloadBar = this.add.sprite(this.world.centerX-bar.width/2.0, this.world.centerY, 'preloaderBar');
-
 		//	This sets the preloadBar sprite as a loader sprite.
 		//	What that does is automatically crop the sprite from 0 to full-width
 		//	as the files below are loaded in.

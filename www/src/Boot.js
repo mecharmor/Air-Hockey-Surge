@@ -7,9 +7,9 @@ BasicGame = {
     score: 0,
     backgroundMusic: null, //bacground music will be global set in next state
     music: true, //start with music on
-    numPlayers: 1,
     btnWidth: 0,
     isPortrait: true,
+    isOnePlayer: true,
     difficulty: 50, // speed of puck 50, 75, 100??
     
 };

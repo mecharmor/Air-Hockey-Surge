@@ -12,19 +12,8 @@ BasicGame.Settings.prototype = {
 
         //draw board in LevelDesign.js
         GenericLevel(this);
-        
-        //lights out on board?
-        this.mnuBackground = this.add.sprite(0,0,'gameMenuBackground');
-        this.mnuBackground.width = this.world.width;
-        this.mnuBackground.height = this.world.height;
-        this.mnuBackground.alpha = 0.75;
-        // end lights out
-
-        // Air Hockey Logo at top
-        var splash = this.cache.getImage('preloaderBackground');
-        var splashSprite = this.add.sprite(0,0,'preloaderBackground');
-        splashSprite.x=this.world.centerX - splash.width/2;
-        splashSprite.y=0;
+        lightsOut(this);
+        placeLogo(this);
         
         var scaleFactor = this.game.btnWidth/535; //535 width of buttons
         
@@ -34,7 +23,7 @@ BasicGame.Settings.prototype = {
         backMain.height = pb.height*scaleFactor;
         backMain.anchor.setTo(0.5,0.5);
         backMain.x=this.world.centerX;
-        backMain.y=splashSprite.height+10;
+        backMain.y=this.splashSprite.height+10;
         
         var npb = this.cache.getImage('numPlayers');
         this.numPlayersButton = this.add.button(0,0, 'numPlayers', this.changePlayer, this);
@@ -71,8 +60,12 @@ BasicGame.Settings.prototype = {
 	},
     changePlayer: function(){
         this.game.numPlayers +=1;
-        if(this.game.numPlayers == 5)
+        BasicGame.isOnePlayer = false;
+        if(this.game.numPlayers == 5){
             this.game.numPlayers = 1;
+            BasicGame.isOnePlayer = true;
+        }
+            
         this.numPlayersButton.frame = this.game.numPlayers -1;
     },
     changeMusic: function(){

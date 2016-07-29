@@ -7,7 +7,8 @@ function GenericLevel(me){
     if(BasicGame.isPortrait){
         var Watermark = me.cache.getImage('Watermark');
         var goalCircleD = me.world.width*2/5; //to change the diameter of the circles
-        var centerCircleD = me.world.width/3;
+        var centerCircleD = me.world.height/3;
+        
         watermarkSprite = me.add.sprite(0, 0, 'Watermark');
         watermarkSprite.width = me.world.width/3.2;
         watermarkSprite.height = me.world.width/(3.2*2);  // to keep aspect ratio 2:1

@@ -3,10 +3,7 @@
 /* global Phaser, BasicGame, $*/
 
 // create Game function in BasicGame
-BasicGame.Game = function (game) {
-};
-
-// set Game function prototype
+BasicGame.Game = function (game) { };
 BasicGame.Game.prototype = {
 	
 	init: function () {
@@ -59,11 +56,7 @@ BasicGame.Game.prototype = {
 		this.puck.body.onBeginContact.add(this.puckHit, this);
 		
 		this.puckClack =  this.add.audio('puckHitSnd');
-		this.puckWhoosh =  this.add.audio('whooshSnd');
-        
-        //speed of puck changes based on difficulty level
-        this.puckSpeed = 50 + BasicGame.difficulty*25
-        
+		this.puckWhoosh =  this.add.audio('whooshSnd');        
         //End Puck Stuff*****************************************************
 	  
 		//Place paddles up to 4 (able to add multiple paddles)
@@ -149,6 +142,16 @@ BasicGame.Game.prototype = {
 		this.input.onDown.add(this.paddleGrab, this);
 		this.input.onUp.add(this.paddleDrop, this);
 		this.input.addMoveCallback(this.paddleMove, this);
+        
+        //One player ai settings *********************
+        this.initX = this.computer.width/2 + this.goalRed.width;
+        this.initY = this.computer.height/2 + this.goalRed.width;
+        // BasicGame.difficulty takes values 0, 1, 2 (less lag as diff increases)
+        var divisor = 1.5 + BasicGame.difficulty*0.5;
+        this.lag = this.puck.height/divisor;
+        //speed of puck changes based on difficulty level
+        this.puckSpeed = 50 + BasicGame.difficulty*25
+        //End ai settings*********************************
 		
 		// for eject puck timer
 		this.timerTxt = this.add.text(this.world.centerX, this.world.centerY + this.game.watermarkSize/2 + 10, 'New Puck: 5', { font: "20px Arial", fill: "#3369E8", align: "center" });
@@ -258,6 +261,7 @@ BasicGame.Game.prototype = {
         this.endGameMenu.add(this.endGameBackMainBtn);
         this.endGameBackMainBtn.x = this.world.centerX-this.endGameBackMainBtn.width/2;
         //******************************************************************
+        
 	},
 	update: function(){
         
@@ -395,25 +399,22 @@ BasicGame.Game.prototype = {
 			this.physics.p2.removeConstraint(pointer.paddleSpring);
 		}
 	},
-	//*************************************
-    // this.computerHandle constraint line 129
+	// AI work here *************************************
 	verticalAI: function(){
         
-        var initY = this.computer.height/2 + this.goalRed.width;
-        var lag = this.puck.width/1.5;
         var distance = Math.sqrt( Math.pow(this.puck.body.x-this.computerHandle.body.x,2) +Math.pow(this.puck.body.y-this.computerHandle.body.y,2)  );
         
         var aiXmin = this.computer.width/1.5+10;
         var aiXmax = this.world.width - aiXmin;
         var aiXvalue;
         if(this.puck.body.velocity.x>0){
-            aiXvalue = this.puck.body.x - lag;
+            aiXvalue = this.puck.body.x - this.lag;
         }else {
-            aiXvalue = this.puck.body.x + lag;
+            aiXvalue = this.puck.body.x + this.lag;
         }
         
         this.computerHandle.body.x = aiXvalue;
-        this.computerHandle.body.y = initY;
+        this.computerHandle.body.y = this.initY;
         
         //lunge  (if the puck is fast it will not lunge)
         if(distance<aiXmin && Math.abs(this.puck.body.velocity.y)<700){
@@ -422,19 +423,12 @@ BasicGame.Game.prototype = {
             this.computerHandle.body.y =this.puck.body.y-10;
             
             if(this.computerHandle.body.y>this.game.height/3){
-                this.computerHandle.body.y = initY;
+                this.computerHandle.body.y = this.initY;
             }
-
         }
-
-        
 	},
 	horizontalAI: function()  {
         // Two p2 physics sprites this.computerHandle and this.computer constained on line 131
-        // maybe just work with this.computer and give up on handle?
-        //var lag = this.rnd.integerInRange(0, 40);
-        var initX = this.computer.width/2 + this.goalRed.width;
-        var lag = this.puck.height/1.5;
         
         var distance = Math.sqrt( Math.pow(this.puck.body.x-this.computerHandle.body.x,2) +Math.pow(this.puck.body.y-this.computerHandle.body.y,2)  );
         
@@ -442,22 +436,22 @@ BasicGame.Game.prototype = {
         var aiYmax = this.world.height - aiYmin;
         var aiYvalue;
         if(this.puck.body.velocity.y>0){
-            aiYvalue = this.puck.body.y - lag;
+            aiYvalue = this.puck.body.y - this.lag;
         }else {
-            aiYvalue = this.puck.body.y + lag;
+            aiYvalue = this.puck.body.y + this.lag;
         }
                
         this.computerHandle.body.y = aiYvalue;
-        this.computerHandle.body.x = initX;
+        this.computerHandle.body.x = this.initX;
 
         //lunge (if the puck is fast it will not lunge)
-        if(distance<aiYmin && Math.abs(this.puck.body.velocity.x)<500){
+        if(distance<aiYmin && Math.abs(this.puck.body.velocity.x)<700){
             
             this.computerHandle.body.x = this.puck.body.x-10;
             this.computerHandle.body.y =this.puck.body.y-10;
             
             if(this.computerHandle.body.x>this.game.width/3){
-                this.computerHandle.body.x = initX;
+                this.computerHandle.body.x = this.initX;
             }
 
         }

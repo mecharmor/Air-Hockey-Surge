@@ -35,6 +35,8 @@ BasicGame.Preloader.prototype = {
         //settings menu
         this.load.image('mainMenuBtn', 'asset/gameMenu-main.png');
         this.load.image('mainMenu', 'asset/buttons.png');
+        this.load.spritesheet('numPlayers', 'asset/players_sprite.png',535,107,4);
+        this.load.spritesheet('difficultyBtn', 'asset/difficulty.png',535,107,3);
         
         //in game menu
         this.load.image('gameContinueBtn', 'asset/gameMenu-continue.png');

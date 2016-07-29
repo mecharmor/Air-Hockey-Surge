@@ -44,7 +44,7 @@ BasicGame.Game.prototype = {
         if( paddleSize > 250 ) paddleSize = 250;
         var puckSize = paddleSize * 0.66;
         
-		// Add puck to the center of the stage
+		// Add PUCK to the center of the stage *****************
 		this.puck = this.add.sprite(this.world.centerX, this.world.centerY,'puck');
         this.puck.width=puckSize; // old size this.world.width/9
         this.puck.height =puckSize; //this is 1/3 of the goal which is 1/3 of the width.
@@ -60,6 +60,11 @@ BasicGame.Game.prototype = {
 		
 		this.puckClack =  this.add.audio('puckHitSnd');
 		this.puckWhoosh =  this.add.audio('whooshSnd');
+        
+        //speed of puck changes based on difficulty level
+        this.puckSpeed = 50 + BasicGame.difficulty*25
+        
+        //End Puck Stuff*****************************************************
 	  
 		//Place paddles up to 4 (able to add multiple paddles)
 		this.paddles = this.add.group(); // up to 4 players??
@@ -255,8 +260,9 @@ BasicGame.Game.prototype = {
         //******************************************************************
 	},
 	update: function(){
-        this.constrainVelocity(this.puck, BasicGame.difficulty);
-		// 1 player activate ai
+        
+        this.constrainVelocity(this.puck, this.puckSpeed);
+		
 		if(BasicGame.isOnePlayer){
             if(BasicGame.isPortrait)
 			    this.verticalAI();

@@ -10,7 +10,7 @@ BasicGame = {
     btnWidth: 0,
     isPortrait: true,
     isOnePlayer: true,
-    difficulty: 50, // speed of puck 50, 75, 100??
+    difficulty: 0, //  0-easy, 1-medium, 2-hard
     
 };
 

@@ -46,7 +46,16 @@ BasicGame.Settings.prototype = {
         }else{
                 this.musicButton.frame=1;
         }
-      
+        
+        var db = this.cache.getImage('difficultyBtn');
+        this.diffButton = this.add.button(0,0, 'difficultyBtn', this.changeDifficulty, this);
+        this.diffButton.width = this.game.btnWidth;
+        this.diffButton.height = db.height*scaleFactor;
+        this.diffButton.anchor.setTo(0.5,0.5);
+        this.diffButton.x=this.world.centerX;
+        this.diffButton.y=this.musicButton.y+this.musicButton.height;
+        this.diffButton.frame=BasicGame.difficulty;
+    
     },
     
     
@@ -78,6 +87,10 @@ BasicGame.Settings.prototype = {
                 this.game.music = true;
                 this.musicButton.frame=0;
             }
+    },
+    changeDifficulty: function(){
+        BasicGame.difficulty = (BasicGame.difficulty+=1)%3;
+        this.diffButton.frame=BasicGame.difficulty;
     },
 
 	startGame: function (btn) {

@@ -28,8 +28,8 @@ BasicGame.Settings.prototype = {
         
         var scaleFactor = this.game.btnWidth/535; //535 width of buttons
         
-        var pb = this.cache.getImage('mainMenuBtnBlue');
-        var backMain = this.add.button(0,0, 'mainMenuBtnBlue', this.backToMainMenu, this);
+        var pb = this.cache.getImage('mainMenuBtn');
+        var backMain = this.add.button(0,0, 'mainMenuBtn', this.backToMainMenu, this);
         backMain.width = this.game.btnWidth;
         backMain.height = pb.height*scaleFactor;
         backMain.anchor.setTo(0.5,0.5);

@@ -38,16 +38,20 @@ BasicGame.Preloader.prototype = {
         this.load.image('goalBlue', 'asset/Goal_blue.png');
         this.load.image('goalRed', 'asset/Goal_red.png');
         this.load.image('airhole', 'asset/hole4.png');
-        this.load.image('playBtn', 'asset/play_new.png');
-        this.load.image('mainMenu', 'asset/buttons.png');
-        this.load.image('aboutBtn', 'asset/gameMenu-about.png');
+        //main menu
+        this.load.image('playBtn', 'asset/play_new-red.png');
+        this.load.image('settingsBtn', 'asset/gameMenu-setttings-red.png');
+        this.load.image('aboutBtn', 'asset/gameMenu-about-red.png');
+        //settings menu
         this.load.image('mainMenuBtn', 'asset/gameMenu-main.png');
-        this.load.image('mainMenuBtnBlue', 'asset/gameMenu-main-blue.png')
-        this.load.image('settingsBtn', 'asset/gameMenu-setttings.png')
+        this.load.image('mainMenu', 'asset/buttons.png');
         
+        //in game menu
         this.load.image('gameContinueBtn', 'asset/gameMenu-continue.png');
+        this.load.image('gameMenuQuitBtn', 'asset/gameMenu-quit-red.png');
+        
+        //this.load.image('mainMenuBtnBlue', 'asset/gameMenu-main-blue.png');
         //this.load.image('gameMenuBackground', 'asset/gameMenu-background.png');
-        this.load.image('gameMenuQuitBtn', 'asset/gameMenu-quit.png');
         
         // spritesheets are loading in with frame rectangles and number of frames
         this.load.spritesheet('numPlayers', 'asset/players_sprite.png',535,107,4);

@@ -34,27 +34,19 @@ BasicGame.Settings.prototype = {
         this.numPlayersButton.y=backMain.y+backMain.height;
         this.numPlayersButton.frame = this.game.numPlayers-1;
         
-        var mb = this.cache.getImage('musicToggle');
-        this.musicButton = this.add.button(0,0, 'musicToggle', this.changeMusic, this);
-        this.musicButton.width = this.game.btnWidth;
-        this.musicButton.height = mb.height*scaleFactor;
-        this.musicButton.anchor.setTo(0.5,0.5);
-        this.musicButton.x=this.world.centerX;
-        this.musicButton.y=this.numPlayersButton.y+this.numPlayersButton.height;
+        
+
+        var playerBtn = createButton('numPlayers', 4, this.change, this);
+        var musicBtn = createButton('musicToggle', 2, this.changeMusic, this);
+        var difficultyBtn = createButton('difficultyBtn', 3, this.changeDifficulty, this);
+        
         if(this.game.music){
-                this.musicButton.frame=0;
+                musicBtn.frame=0;
         }else{
-                this.musicButton.frame=1;
+                musicBtn.frame=1;
         }
         
-        var db = this.cache.getImage('difficultyBtn');
-        this.diffButton = this.add.button(0,0, 'difficultyBtn', this.changeDifficulty, this);
-        this.diffButton.width = this.game.btnWidth;
-        this.diffButton.height = db.height*scaleFactor;
-        this.diffButton.anchor.setTo(0.5,0.5);
-        this.diffButton.x=this.world.centerX;
-        this.diffButton.y=this.musicButton.y+this.musicButton.height;
-        this.diffButton.frame=BasicGame.difficulty;
+        
     
     },
     
@@ -67,7 +59,7 @@ BasicGame.Settings.prototype = {
 		//	Do some nice funky main menu effect here
 
 	},
-    changePlayer: function(){
+    changePlayer: function(btn){
         this.game.numPlayers +=1;
         BasicGame.isOnePlayer = false;
         if(this.game.numPlayers == 5){
@@ -77,20 +69,20 @@ BasicGame.Settings.prototype = {
             
         this.numPlayersButton.frame = this.game.numPlayers -1;
     },
-    changeMusic: function(){
+    changeMusic: function(btn){
             if(this.game.music){
                 BasicGame.backgroundMusic.stop();
                 this.game.music = false;
-                this.musicButton.frame=1;
+                btn.frame=1;
             }else{
                 BasicGame.backgroundMusic.play();
                 this.game.music = true;
-                this.musicButton.frame=0;
+                btn.frame=0;
             }
     },
-    changeDifficulty: function(){
+    changeDifficulty: function(btn){
         BasicGame.difficulty = (BasicGame.difficulty+=1)%3;
-        this.diffButton.frame=BasicGame.difficulty;
+        btn.frame=BasicGame.difficulty;
     },
 
 	startGame: function (btn) {

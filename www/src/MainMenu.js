@@ -17,9 +17,9 @@ BasicGame.MainMenu.prototype = {
         
         var scaleFactor = this.game.btnWidth/535; //535 width of buttons
         
-        createButton('playBtn', 0, this.startGame, this);
-        createButton('settingsBtn', 1, this.settings, this);
-        createButton('aboutBtn',2, this.aboutGame, this);     
+        var test = createButton('playBtn', 0, this.startGame, this);
+        var test2 = createButton('settingsBtn', 1, this.settings, this);
+        var test3 = createButton('aboutBtn',2, this.aboutGame, this);     
 
         
     },
@@ -35,7 +35,7 @@ BasicGame.MainMenu.prototype = {
 	},
 
 	startGame: function (btn) {
-        
+        console.log("start for gods sake")
         this.game.state.start('Game');
 
 		//	Ok, the Play Button has been clicked or touched, so let's stop the music (otherwise it'll carry on playing)

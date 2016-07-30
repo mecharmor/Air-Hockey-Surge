@@ -143,14 +143,17 @@ BasicGame.Game.prototype = {
 		this.input.onUp.add(this.paddleDrop, this);
 		this.input.addMoveCallback(this.paddleMove, this);
         
+        
         //One player ai settings *********************
-        this.initX = this.computer.width/2 + this.goalRed.width;
-        this.initY = this.computer.height/2 + this.goalRed.width;
-        // BasicGame.difficulty takes values 0, 1, 2 (less lag as diff increases)
-        var divisor = 1.5 + BasicGame.difficulty*0.5;
-        this.lag = this.puck.height/divisor;
-        //speed of puck changes based on difficulty level
-        this.puckSpeed = 50 + BasicGame.difficulty*25
+        if(BasicGame.isOnePlayer){
+            this.initX = this.computer.width/2 + this.goalRed.width;
+            this.initY = this.computer.height/2 + this.goalRed.width;
+            // BasicGame.difficulty takes values 0, 1, 2 (less lag as diff increases)
+            var divisor = 1.5 + BasicGame.difficulty*0.5;
+            this.lag = this.puck.height/divisor;
+            //speed of puck changes based on difficulty level
+            this.puckSpeed = 50 + BasicGame.difficulty*25
+        }
         //End ai settings*********************************
 		
 		// for eject puck timer

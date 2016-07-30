@@ -131,8 +131,9 @@ function createButton(btn, pos, fun, me){
     mybtn.height = me.game.btnWidth/5;
     mybtn.anchor.setTo(0.5,0.5);
     mybtn.x = me.world.centerX;
-    mybtn.y = 233 + pos * mybtn.height
+    mybtn.y = 233 + pos * mybtn.height;  
     
+    return mybtn;
 };
 
 function lightsOut(me){

@@ -15,7 +15,7 @@ BasicGame.MainMenu.prototype = {
         lightsOut(this);
         placeLogo(this);
         
-        var scaleFactor = this.game.btnWidth/535; //535 width of buttons
+        //var scaleFactor = this.game.btnWidth/535; //535 width of buttons
         
         var test = createButton('playBtn', 0, this.startGame, this);
         var test2 = createButton('settingsBtn', 1, this.settings, this);
@@ -35,7 +35,7 @@ BasicGame.MainMenu.prototype = {
 	},
 
 	startGame: function (btn) {
-        console.log("start for gods sake")
+        
         this.game.state.start('Game');
 
 		//	Ok, the Play Button has been clicked or touched, so let's stop the music (otherwise it'll carry on playing)

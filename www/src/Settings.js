@@ -17,26 +17,8 @@ BasicGame.Settings.prototype = {
         
         var scaleFactor = this.game.btnWidth/535; //535 width of buttons
         
-        var pb = this.cache.getImage('mainMenuBtn');
-        var backMain = this.add.button(0,0, 'mainMenuBtn', this.backToMainMenu, this);
-        backMain.width = this.game.btnWidth;
-        backMain.height = pb.height*scaleFactor;
-        backMain.anchor.setTo(0.5,0.5);
-        backMain.x=this.world.centerX;
-        backMain.y=this.splashSprite.height+10;
-        
-        var npb = this.cache.getImage('numPlayers');
-        this.numPlayersButton = this.add.button(0,0, 'numPlayers', this.changePlayer, this);
-        this.numPlayersButton.width = this.game.btnWidth;
-        this.numPlayersButton.height = npb.height*scaleFactor;
-        this.numPlayersButton.anchor.setTo(0.5,0.5);
-        this.numPlayersButton.x=this.world.centerX;
-        this.numPlayersButton.y=backMain.y+backMain.height;
-        this.numPlayersButton.frame = this.game.numPlayers-1;
-        
-        
-
-        var playerBtn = createButton('numPlayers', 4, this.change, this);
+        var playerBtn = createButton('mainMenuBtn', 0, this.backToMainMenu, this);
+        var playerBtn = createButton('numPlayers', 1, this.changePlayer, this);
         var musicBtn = createButton('musicToggle', 2, this.changeMusic, this);
         var difficultyBtn = createButton('difficultyBtn', 3, this.changeDifficulty, this);
         
@@ -45,6 +27,7 @@ BasicGame.Settings.prototype = {
         }else{
                 musicBtn.frame=1;
         }
+        playerBtn.frame = this.game.numPlayers-1;
         
         
     
@@ -60,15 +43,16 @@ BasicGame.Settings.prototype = {
 
 	},
     changePlayer: function(btn){
+        console.log(btn);
         this.game.numPlayers +=1;
         BasicGame.isOnePlayer = false;
         if(this.game.numPlayers == 5){
             this.game.numPlayers = 1;
             BasicGame.isOnePlayer = true;
         }
-            
-        this.numPlayersButton.frame = this.game.numPlayers -1;
+        btn.frame = this.game.numPlayers - 1;
     },
+    
     changeMusic: function(btn){
             if(this.game.music){
                 BasicGame.backgroundMusic.stop();

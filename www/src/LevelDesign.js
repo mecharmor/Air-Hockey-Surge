@@ -10,8 +10,8 @@ function GenericLevel(me){
         var centerCircleD = me.world.width/2;
         
         watermarkSprite = me.add.sprite(0, 0, 'Watermark');
-        watermarkSprite.width = me.world.width/2.2;
-        watermarkSprite.height = me.world.width/(2.2*2);  // to keep aspect ratio 2:1
+        watermarkSprite.width = me.world.width/1.7;
+        watermarkSprite.height = me.world.width/(1.7*2);  // to keep aspect ratio 2:1
         watermarkSprite.x = me.world.centerX-watermarkSprite.width/2;
         watermarkSprite.y = me.world.centerY-watermarkSprite.height/2;
         watermarkSprite.alpha = 0.40;  //transparancy as a percentage
@@ -67,8 +67,8 @@ function GenericLevel(me){
         var goalCircleD = me.world.height*2/5; //to change the diameter of the circles
         var centerCircleD = me.world.height/2;
         watermarkSprite = me.add.sprite(0, 0, 'Watermark');
-        watermarkSprite.width = me.world.height/2.2;
-        watermarkSprite.height = me.world.height/(2.2*2);  // to keep aspect ratio 2:1
+        watermarkSprite.width = me.world.height/1.7;
+        watermarkSprite.height = me.world.height/(1.7*2);  // to keep aspect ratio 2:1
         watermarkSprite.x = me.world.centerX-watermarkSprite.width/2;
         watermarkSprite.y = me.world.centerY-watermarkSprite.height/2;
         watermarkSprite.alpha = 0.40;  //transparancy as a percentage

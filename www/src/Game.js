@@ -151,10 +151,12 @@ BasicGame.Game.prototype = {
             // BasicGame.difficulty takes values 0, 1, 2 (less lag as diff increases)
             var divisor = 1.5 + BasicGame.difficulty*0.5;
             this.lag = this.puck.height/divisor;
-            //speed of puck changes based on difficulty level
-            this.puckSpeed = 50 + BasicGame.difficulty*25
+
         }
         //End ai settings*********************************
+        
+        //speed of puck changes based on difficulty level
+        this.puckSpeed = 50 + BasicGame.difficulty*25
 		
 		// for eject puck timer
 		this.timerTxt = this.add.text(this.world.centerX, this.world.centerY + this.game.watermarkSize/2 + 10, 'New Puck: 5', { font: "20px Arial", fill: "#3369E8", align: "center" });

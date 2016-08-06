@@ -8,7 +8,7 @@ BasicGame.About.prototype = {
     create: function () {   
 
         this.holdHeight = this.world.height;
-        this.world.setBounds(0,0,this.world.width,2000);
+        this.world.setBounds(0,0,this.world.width,1500);
 
                 //awesome plugin I found...
         this.kineticScrolling = this.game.plugins.add(Phaser.Plugin.KineticScrolling);
@@ -53,49 +53,31 @@ BasicGame.About.prototype = {
                         "College of the Sequoias\n"+
                         "SURGE Developers\n"+
                         "***********************\n";
-        var text2 = this.add.text(this.world.centerX, 330, creditStr, devStyle);
+        var text2 = this.add.text(this.world.centerX, 300, creditStr, devStyle);
         text2.x=this.world.centerX-text2.width*0.5;
         //****************************************
         
-        var coryTxt = this.add.text(0, 420, "Cory Lewis\ncjl9703@yahoo.com", devStyle);
-        coryTxt.x=this.world.centerX-coryTxt.width*0.5;
+        var creditNamesStr = "cory L\n<cjl9703@yahoo.com>\n"+
+        	                   "Paul Gonzalez-Becerra\n<pgonzbecer@gmail.com>\n"+
+                                "Gerald Jumper\n<geraldj@cos.edu>\n"+
+                                "Martin Garcia\n<mgarcia314159@gmail.com>\n"+
+                                "Matthew Machado\n<matthew.machado@giant.cos.edu>\n"+
+                                "Graham Frazier\n<graham.frazier@giant.cos.edu>\n"+
+                                "Larry Owens\n<larryo@cos.edu>\n"+
+                                "John Redden\n<jtredden@gmail.com>\n"
+        
+        var creditsTxt = this.add.text(0, 400, creditNamesStr, devStyle);
+        creditsTxt.x=this.world.centerX-creditsTxt.width*0.5;
         //this.add.image(this.world.centerX, 540, 'cory').anchor.setTo(.5);
-        
-        var paulTxt = this.add.text(0, 640, "Paul Gonzalez-Becerra\npgonzbecer@gmail.com", devStyle);
-        paulTxt.x=this.world.centerX-paulTxt.width*0.5;
-        //this.add.image(this.world.centerX, 755, 'paul').anchor.setTo(.5);
-        
-        var johnTxt = this.add.text(0, 860, "John Redden\njtredden@gmail.com", devStyle);
-        johnTxt.x=this.world.centerX-johnTxt.width*0.5;
-        //this.add.image(this.world.centerX, 970, 'john').anchor.setTo(.5);
-        
-        var geraldTxt = this.add.text(0,1080, "Gerald Jumper\njumpergerald@gmail.com",devStyle);
-        geraldTxt.x=this.world.centerX-geraldTxt.width*0.5;
-        //this.add.image(this.world.centerX,numbers,'gerald').anchor.setTo(0.5);
         
         
         var specialStr = "***********************\n"+
                         "Special Thanks to:\n"+
+                        "Duane Goodwin\n<duaneg@cos.edu>\n"+
                         "***********************\n";
-        var text5 = this.add.text(this.world.centerX, 1500, specialStr, devStyle);
+        var text5 = this.add.text(this.world.centerX, 800, specialStr, devStyle);
         text5.x=this.world.centerX-text5.width*0.5;
                 
-        var creditStyle = {
-            font:	"10px Courier New",
-            align: "center"
-        };
-        var creditStr = "***********************\n"+
-                        "Music by Audionautix\n"+
-                        "is licensed under a\n"+
-                        "Creative Commons Attribution license\n"+
-                        "(https://creativecommons.org/licenses/by/4.0/)\n"+
-                        "Artist: http://audionautix.com/\n"+
-                        "***********************\n" + 
-                        "Funding for this project was provided by the College of the Sequoias SURGE program,\n" + 
-                        "which is funded by the US Department of Education MSEIP grant #P120A130106.";
-        var credits = this.add.text(this.world.centerX, 1200, creditStr, creditStyle);
-        credits.x=this.world.centerX-credits.width*0.5;
-
     },
 
     update: function () {

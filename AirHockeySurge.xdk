@@ -5,7 +5,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.webapp",
       "src": "webapp/template-blank/sample.zip",
       "projectGuid": "2e6f225f-6691-4bbc-9814-7feaea9b2c1b",
-      "lastModifiedDate": 1470527548684,
+      "lastModifiedDate": 1470539619828,
       "creationDate": 1461975999462
     },
     "XDK-app-designer": "false",
@@ -224,7 +224,7 @@
         },
         "isActive_": true,
         "certificateId_": "",
-        "appName_": "AirHockeySurge",
+        "appName_": "Air Hockey SURGE",
         "appID_": "xdk.intel.blank.template.crosswalk",
         "appAccess_": {
           "mode": "whitelist",

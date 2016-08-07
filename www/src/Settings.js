@@ -43,7 +43,7 @@ BasicGame.Settings.prototype = {
 
 	},
     changePlayer: function(btn){
-        console.log(btn);
+
         this.game.numPlayers +=1;
         BasicGame.isOnePlayer = false;
         if(this.game.numPlayers == 5){

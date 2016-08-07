@@ -43,6 +43,11 @@ BasicGame.About.prototype = {
         text1.x=this.world.centerX-text1.width*0.5;
         //****************************************
         
+        var groupPhoto = this.cache.getImage('groupPhoto');
+        this.groupPhoto = this.add.sprite(0,0,'groupPhoto');
+        this.groupPhoto.scale.setTo(.25,.25);
+        this.groupPhoto.x=this.world.centerX - groupPhoto.width/8;
+        this.groupPhoto.y=300;
         // developers
         var devStyle = {
             font:	"14px Courier New",
@@ -53,7 +58,7 @@ BasicGame.About.prototype = {
                         "College of the Sequoias\n"+
                         "SURGE Developers\n"+
                         "***********************\n";
-        var text2 = this.add.text(this.world.centerX, 300, creditStr, devStyle);
+        var text2 = this.add.text(this.world.centerX, 480, creditStr, devStyle);
         text2.x=this.world.centerX-text2.width*0.5;
         //****************************************
         
@@ -66,7 +71,7 @@ BasicGame.About.prototype = {
                                 "Larry Owens\n<larryo@cos.edu>\n"+
                                 "John Redden\n<jtredden@gmail.com>\n"
         
-        var creditsTxt = this.add.text(0, 400, creditNamesStr, devStyle);
+        var creditsTxt = this.add.text(0, 560, creditNamesStr, devStyle);
         creditsTxt.x=this.world.centerX-creditsTxt.width*0.5;
         //this.add.image(this.world.centerX, 540, 'cory').anchor.setTo(.5);
         
@@ -75,7 +80,7 @@ BasicGame.About.prototype = {
                         "Special Thanks to:\n"+
                         "Duane Goodwin\n<duaneg@cos.edu>\n"+
                         "***********************\n";
-        var text5 = this.add.text(this.world.centerX, 800, specialStr, devStyle);
+        var text5 = this.add.text(this.world.centerX, 900, specialStr, devStyle);
         text5.x=this.world.centerX-text5.width*0.5;
                 
     },

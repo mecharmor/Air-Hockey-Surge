@@ -49,7 +49,7 @@ BasicGame.Preloader.prototype = {
         // loading in audio assets here... keep as wav to save loading times if poss.
 		this.load.audio('puckHitSnd', ['asset/button-16.wav']);
         this.load.audio('whooshSnd', ['asset/whip-whoosh-03.wav']);
-        this.load.audio('gameMusic', ['asset/Burner.mp3']);
+        this.load.audio('gameMusic', ['asset/Burner.wav']);
 
 	},
 

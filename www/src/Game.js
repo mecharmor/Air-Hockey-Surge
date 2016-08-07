@@ -312,8 +312,12 @@ BasicGame.Game.prototype = {
 			}
 		}else{
 			this.time.events.remove(this.timer);
-			this.timerTxt.setText('Winner Winner');
+            this.timerTxt.setText('Winner Winner');
             //end game group Visiable here
+            if(this.scoreL>this.scoreR)
+                this.endtxt.setText("Red Wins!");
+            else
+                this.endtxt.setText("Blue Wins!");
             this.endGameMenu.visible = true; //toggle visible
 		}
 

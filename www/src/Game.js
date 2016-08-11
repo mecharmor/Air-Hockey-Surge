@@ -9,7 +9,7 @@ BasicGame.Game.prototype = {
 	init: function () {
 		
         GenericLevel(this);
-
+        finalScore=7;
 		// using p2 physics with no gravity
 		this.physics.startSystem(Phaser.Physics.P2JS);
 		this.physics.p2.restitution = 0.85; //this gives bounce
@@ -301,12 +301,12 @@ BasicGame.Game.prototype = {
 	updateCounter: function(timer) {
 		this.timerTxt.visible = true;
 		this.counter--;
-		if(this.scoreL<7 && this.scoreR<7){
+		if(this.scoreL<finalScore && this.scoreR<finalScore){
 			if(this.counter > 0){
 				this.timerTxt.setText('New Puck: ' + this.counter);
 			}else{
 				this.time.events.remove(this.timer);
-				this.counter = 6;
+				this.counter = finalScore - 1;
 				this.ejectPuck();
 				this.timerTxt.visible = false;
 			}

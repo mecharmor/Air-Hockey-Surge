@@ -372,9 +372,10 @@ BasicGame.Game.prototype = {
 	   if (bodies.length != 0){
 			pointer.handle = this.add.sprite(pointer.x, pointer.y);
             pointer.handle.anchor.setTo(0.5, 0.5);
-			this.physics.p2.enable(pointer.handle,false);
+			this.physics.p2.enable(pointer.handle,true);
 			pointer.handle.body.setCircle(5);
 			pointer.handle.body.static = true;
+          
 			//pointer.handle.body.collideWorldBounds = true;
 		   
 		   //basically the pointer gets reference to new handle sprite, paddle and paddle spring
@@ -392,18 +393,27 @@ BasicGame.Game.prototype = {
             // take care of puck drag into goal here
             if(pointer.paddle.alive){
                 //TODO: Keep paddle on table.
+                if(pointer.prevX){
+                    pointer.paddle.body.x = pointer.prevX;
+                    pointer.paddle.body.y = pointer.prevY;                   
+                }
                 pointer.handle.body.x = x;
                 pointer.handle.body.y = y;
+                pointer.prevX = x;
+                pointer.prevY = y;
                 
             }else{
                 this.paddleDrop(pointer);
             }
-			
 		}
 	}, 
 	paddleDrop: function(pointer){
-		if(pointer.handle){
+		if(pointer.handle&&pointer.paddle){
 			pointer.handle.destroy();
+            pointer.paddle.body.velocity.x*=5;
+            pointer.paddle.body.velocity.y*=5;
+            pointer.prevX=null;
+            pointer.prevY=null;
 			pointer.paddle = null;
 			this.physics.p2.removeConstraint(pointer.paddleSpring);
 		}

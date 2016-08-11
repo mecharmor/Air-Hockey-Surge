@@ -384,6 +384,10 @@ BasicGame.Game.prototype = {
            //if(pointer.paddle===this.puck) console.log("got it")
 		   //Docs.... createLockConstraint(bodyA, bodyB, offset, angle, maxForce) 
 		   pointer.paddleSpring = this.physics.p2.createLockConstraint(pointer.handle, pointer.paddle);
+           
+           //new var attached to pointer
+           pointer.prevX = pointer.x;
+           pointer.prevY = pointer.y;
 	   }
 		
 	},
@@ -392,11 +396,10 @@ BasicGame.Game.prototype = {
 		if(pointer.paddle){
             // take care of puck drag into goal here
             if(pointer.paddle.alive){
-                //TODO: Keep paddle on table.
-                if(pointer.prevX){
-                    pointer.paddle.body.x = pointer.prevX;
-                    pointer.paddle.body.y = pointer.prevY;                   
-                }
+                
+                pointer.paddle.body.x = pointer.prevX;
+                pointer.paddle.body.y = pointer.prevY;                   
+                
                 pointer.handle.body.x = x;
                 pointer.handle.body.y = y;
                 pointer.prevX = x;

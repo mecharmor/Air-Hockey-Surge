@@ -47,29 +47,28 @@ BasicGame.About.prototype = {
         this.groupPhoto = this.add.sprite(0,0,'groupPhoto');
         this.groupPhoto.scale.setTo(.25,.25);
         this.groupPhoto.x=this.world.centerX - groupPhoto.width/8;
-        this.groupPhoto.y=300;
+        this.groupPhoto.y=350;
         // developers
         var devStyle = {
             font:	"14px Courier New",
             align: "center",
             fill: "white"
         };
-        var creditStr = "***********************\n"+
-                        "College of the Sequoias\n"+
+        var creditStr = "College of the Sequoias\n"+
                         "SURGE Developers\n"+
                         "***********************\n";
         var text2 = this.add.text(this.world.centerX, 480, creditStr, devStyle);
         text2.x=this.world.centerX-text2.width*0.5;
         //****************************************
         
-        var creditNamesStr = "cory L\n<cjl9703@yahoo.com>\n"+
-        	                   "Paul Gonzalez-Becerra\n<pgonzbecer@gmail.com>\n"+
-                                "Gerald Jumper\n<geraldj@cos.edu>\n"+
-                                "Martin Garcia\n<mgarcia314159@gmail.com>\n"+
-                                "Matthew Machado\n<matthew.machado@giant.cos.edu>\n"+
-                                "Graham Frazier\n<graham.frazier@giant.cos.edu>\n"+
-                                "Larry Owens\n<larryo@cos.edu>\n"+
-                                "John Redden\n<jtredden@gmail.com>\n"
+        var creditNamesStr =    "Cory Lewis: cjl9703@yahoo.com\n\n"+
+        	                    "Paul Gonzalez-Becerra: pgonzbecer@gmail.com\n\n"+
+                                "Gerald Jumper: geraldj@cos.edu\n\n"+
+                                "Martin Garcia: mgarcia314159@gmail.com\n\n"+
+                                "Matthew Machado: matthew.machado@giant.cos.edu\n\n"+
+                                "Graham Frazier: graham.frazier@giant.cos.edu\n\n\n"+
+                                "Larry Owens: larryo@cos.edu\n\n"+
+                                "John Redden: jtredden@gmail.com\n\n"
         
         var creditsTxt = this.add.text(0, 560, creditNamesStr, devStyle);
         creditsTxt.x=this.world.centerX-creditsTxt.width*0.5;
@@ -77,9 +76,8 @@ BasicGame.About.prototype = {
         
         
         var specialStr = "***********************\n"+
-                        "Special Thanks to:\n"+
-                        "Duane Goodwin\n<duaneg@cos.edu>\n"+
-                        "***********************\n";
+                        "Special Thanks To:\n"+
+                        "Duane Goodwin: duaneg@cos.edu\n";
         var text5 = this.add.text(this.world.centerX, 900, specialStr, devStyle);
         text5.x=this.world.centerX-text5.width*0.5;
                 

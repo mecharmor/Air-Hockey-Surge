@@ -64,7 +64,7 @@ BasicGame.About.prototype = {
         var creditNamesStr =    "Cory Lewis: cjl9703@yahoo.com\n\n"+
         	                    "Paul Gonzalez-Becerra: pgonzbecer@gmail.com\n\n"+
                                 "Gerald Jumper: geraldj@cos.edu\n\n"+
-                                "Martin Garcia: mgarcia314159@gmail.com\n\n"+
+                                "Martin Garcia: martin.garcia@giant.cos.edu\n\n"+
                                 "Matthew Machado: matthew.machado@giant.cos.edu\n\n"+
                                 "Graham Frazier: graham.frazier@giant.cos.edu\n\n\n"+
                                 "Larry Owens: larryo@cos.edu\n\n"+

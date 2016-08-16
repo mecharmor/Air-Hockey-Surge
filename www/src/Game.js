@@ -159,7 +159,7 @@ BasicGame.Game.prototype = {
         this.puckSpeed = 50 + BasicGame.difficulty*25
 		
 		// for eject puck timer
-		this.timerTxt = this.add.text(this.world.centerX, this.world.centerY + this.game.watermarkSize/2 + 10, 'New Puck: 5', { font: "20px Arial", fill: "#3369E8", align: "center" });
+		this.timerTxt = this.add.text(this.world.centerX, this.world.centerY + this.game.watermarkSize/2 , 'New Puck: 5', { font: "20px Arial", fill: "#3369E8", align: "center" });
 		this.timerTxt.anchor.setTo(0.5, 0.5);
 		this.timerTxt.visible = false;
 		//this.timerTxt.angle = 90;
@@ -372,7 +372,7 @@ BasicGame.Game.prototype = {
 	   if (bodies.length != 0){
 			pointer.handle = this.add.sprite(pointer.x, pointer.y);
             pointer.handle.anchor.setTo(0.5, 0.5);
-			this.physics.p2.enable(pointer.handle,true);
+			this.physics.p2.enable(pointer.handle,false);
 			pointer.handle.body.setCircle(5);
 			pointer.handle.body.static = true;
           
@@ -385,9 +385,6 @@ BasicGame.Game.prototype = {
 		   //Docs.... createLockConstraint(bodyA, bodyB, offset, angle, maxForce) 
 		   pointer.paddleSpring = this.physics.p2.createLockConstraint(pointer.handle, pointer.paddle);
            
-           //new var attached to pointer
-           pointer.prevX = pointer.x;
-           pointer.prevY = pointer.y;
 	   }
 		
 	},
@@ -396,27 +393,16 @@ BasicGame.Game.prototype = {
 		if(pointer.paddle){
             // take care of puck drag into goal here
             if(pointer.paddle.alive){
-                
-                pointer.paddle.body.x = pointer.prevX;
-                pointer.paddle.body.y = pointer.prevY;                   
-                
                 pointer.handle.body.x = x;
                 pointer.handle.body.y = y;
-                pointer.prevX = x;
-                pointer.prevY = y;
-                
             }else{
                 this.paddleDrop(pointer);
             }
 		}
 	}, 
 	paddleDrop: function(pointer){
-		if(pointer.handle&&pointer.paddle){
+		if(pointer.handle){
 			pointer.handle.destroy();
-            pointer.paddle.body.velocity.x*=5;
-            pointer.paddle.body.velocity.y*=5;
-            pointer.prevX=null;
-            pointer.prevY=null;
 			pointer.paddle = null;
 			this.physics.p2.removeConstraint(pointer.paddleSpring);
 		}

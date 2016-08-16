@@ -5,7 +5,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.webapp",
       "src": "webapp/template-blank/sample.zip",
       "projectGuid": "2e6f225f-6691-4bbc-9814-7feaea9b2c1b",
-      "lastModifiedDate": 1470540560867,
+      "lastModifiedDate": 1471365594958,
       "creationDate": 1461975999462
     },
     "XDK-app-designer": "false",
@@ -265,7 +265,7 @@
         "iosProvs_": [],
         "cordovaCLIVersion_": "5.4.1",
         "crosswalkVersion_": "16",
-        "appVersion_": "0.0.1",
+        "appVersion_": "0.0.2",
         "appAuthor_": "John Redden and Gang",
         "appDescription_": "Classic air hockey table game play.",
         "appVersionCode_": "1"

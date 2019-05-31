@@ -2,11 +2,6 @@
 Classic Air Hockey game that supports 1 to 4 players.
 
 ### [Download Air Hockey Surge App](https://play.google.com/store/apps/details?id=com.edunetsystems.airhockey&hl=en_US)
-<p align="center">
-<a href="https://play.google.com/store/apps/details?id=com.edunetsystems.airhockey&hl=en_US">
-<img alt="EventUp" src="https://github.com/mecharmor/Air-Hockey-Surge/blob/master/www/asset/AirHockeySplashscreen.png" width="250">
-</a>
-</p>
 
 ## Sample Game
 

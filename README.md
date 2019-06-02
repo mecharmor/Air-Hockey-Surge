@@ -17,4 +17,7 @@ Classic Air Hockey game that supports 1 to 4 players.
 For any other questions about this repo in general please reach out to [**@mecharmor**](https://github.com/mecharmor) on Github. <br>
 PS: Feel free to fork it if you find our site interesting.
 
-> Updated on: 05/31/19, Cory Lewis
+## Acknowledgements
+Funding for this project was provided by the College of the Sequoias SURGE program, which is funded by the US Department of Education MSEIP grant #P120A130106.
+
+> Updated on: 6/2/19, Cory Lewis
